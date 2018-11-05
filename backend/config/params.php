@@ -11,8 +11,9 @@ return [
 
     /** ------ 配置管理类型 ------ **/
     'configTypeList' => [
-        ''              => '无',
+        ''              => "无",
         'text'          => "文本框",
+        'number'        => "数字框",
         'password'      => "密码框",
         'secretKeyText' => "密钥文本框",
         'textarea'      => "文本域",

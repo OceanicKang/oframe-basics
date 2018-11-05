@@ -146,7 +146,7 @@ class Config extends ActiveRecord
 
         }
 
-        return info;
+        return $info;
     }
 
     /**
