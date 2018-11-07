@@ -31,6 +31,16 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
             <!-- 网站名称 -->
             <?php echo $form -> field($model , 'WEB_SITE_TITLE') -> textInput() -> label($config['WEB_SITE_TITLE']['title']); ?>
 
+            <!-- LOGO -->
+            <?php echo $form -> field($model , 'WEB_SITE_LOGO_NAME', [
+                            'options' => ['class' => 'of-float-l']
+                        ]) -> textInput() -> label($config['WEB_SITE_LOGO_NAME']['title']); ?>
+
+            <!-- AD NAME -->
+            <?php echo $form -> field($model , 'WEB_SITE_AD_NAME', [
+                            'options' => ['class' => 'of-float-l']
+                        ]) -> textInput() -> label($config['WEB_SITE_AD_NAME']['title']); ?>
+
             <!-- 网站域名 -->
             <?php echo $form -> field($model , 'WEB_SITE_DOMAIN') -> textInput([
                             'lay-verify' => 'url'
@@ -69,7 +79,15 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
                         ]) -> label($config['WEB_MAX_FILE_SIZE']['title']); ?>
 
             <!-- 上传文件类型 -->
-            <?php echo $form -> field($model , 'WEB_FILE_TYPE') -> textInput() -> label($config['WEB_FILE_TYPE']['title']); ?>
+            <?php echo $form -> field($model , 'WEB_FILE_TYPE', [
+                            'template' => " <div class=\"layui-form-item\">
+                                                {label}
+                                                <div class=\"layui-input-inline\" style=\"width: 50%;\">
+                                                    {input}
+                                                </div>
+                                                <div class=\"layui-form-mid layui-word-aux\">{$config['WEB_FILE_TYPE']['describe']}</div>
+                                            </div>"
+                        ]) -> textInput() -> label($config['WEB_FILE_TYPE']['title']); ?>
 
             <!-- 首页标题 -->
             <?php echo $form -> field($model , 'WEB_SITE_INDEX_TITLE') -> textInput() -> label($config['WEB_SITE_INDEX_TITLE']['title']); ?>
@@ -104,7 +122,6 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
                     <?php echo Html::submitButton('确认保存', [
                                     'class' => 'layui-btn',
                                     'lay-submit' => '',
-                                    'lay-filter' => 'set_website'
                                 ]) ?>
                 </div>
             </div>

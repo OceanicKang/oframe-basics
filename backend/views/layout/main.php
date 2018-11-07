@@ -47,7 +47,7 @@ AppAsset::register($this);
                             'lay-separator' => '/',
                         ],
                         'homeLink' => [
-                            'label' => Yii::$app -> params['System_Info']['ab_name'],
+                            'label' => Yii::$app -> config -> get('WEB_SITE_AD_NAME'),
                             'url' => Url::to(['/sys/main/index'])
                         ],
                         'tag' => 'span',
@@ -74,7 +74,7 @@ AppAsset::register($this);
         base: '/resource/backend/' //静态资源所在路径
     }).extend({
         index: '/lib/index' //主入口模块
-    }).use(['index', 'table', 'form'], function () {
+    }).use(['index', 'table', 'form', 'set'], function () {
         var $ = layui.$
         ,admin = layui.admin
         ,element = layui.element

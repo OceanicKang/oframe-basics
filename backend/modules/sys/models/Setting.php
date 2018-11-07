@@ -3,6 +3,7 @@ namespace oframe\basics\backend\modules\sys\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use oframe\basics\common\models\common\Config;
 
 /**
  * 网站设置 model
@@ -23,6 +24,18 @@ class Setting extends ActiveRecord
      * @var string
      */
     public $WEB_SITE_DOMAIN = '';
+
+    /**
+     * LOGO NAME
+     * @var string
+     */
+    public $WEB_SITE_LOGO_NAME = '';
+
+    /**
+     * AD NAME
+     * @var string
+     */
+    public $WEB_SITE_AD_NAME = '';
 
     /**
      * 缓存时间
@@ -98,10 +111,17 @@ class Setting extends ActiveRecord
      */
     public $SYS_EMAIL_PASSWORD = '';
 
+    /**
+     * SSL 加密
+     * @var string
+     */
+    public $SYS_EMAIL_ENCRYPTION = '';
 
     public function init()
     {
         $this -> WEB_SITE_TITLE       = Yii::$app -> config -> get('WEB_SITE_TITLE');
+        $this -> WEB_SITE_LOGO_NAME   = Yii::$app -> config -> get('WEB_SITE_LOGO_NAME');
+        $this -> WEB_SITE_AD_NAME     = Yii::$app -> config -> get('WEB_SITE_AD_NAME');
         $this -> WEB_SITE_DOMAIN      = Yii::$app -> config -> get('WEB_SITE_DOMAIN') ?
                                         Yii::$app -> config -> get('WEB_SITE_DOMAIN') : Yii::$app -> request -> hostInfo;
         $this -> WEB_SITE_CACHE       = Yii::$app -> config -> get('WEB_SITE_CACHE') ?
@@ -119,6 +139,8 @@ class Setting extends ActiveRecord
         $this -> SYS_EMAIL_USERNAME   = Yii::$app -> config -> get('SYS_EMAIL_USERNAME');
         $this -> SYS_EMAIL_NICKNAME   = Yii::$app -> config -> get('SYS_EMAIL_NICKNAME');
         $this -> SYS_EMAIL_PASSWORD   = Yii::$app -> config -> get('SYS_EMAIL_PASSWORD');
+        $this -> SYS_EMAIL_ENCRYPTION = Yii::$app -> config -> get('SYS_EMAIL_ENCRYPTION') ?
+                                        Yii::$app -> config -> get('SYS_EMAIL_ENCRYPTION') : 0;
 
         parent::init();
     }
@@ -128,20 +150,24 @@ class Setting extends ActiveRecord
     /**
      * 批量更新配置值
      * @Author OceanicKang 2018-11-05
-     * @param  array      $list      [description]
-     * @return [type]                 [description]
+     * @param  array      $post      [description]
+     * @return bool                 [description]
      */
-    public function updateValues($list)
+    public static function updateValues($post)
     {
         $sql = '';
 
-        foreach ($list as $name => $value) {
+        foreach ($post['Setting'] as $name => $value) {
 
-            $sql .= "UPDATE `of_sys_config` SET `value` = {$value} WHERE `name` = '{$name}';";
+            $sql .= "UPDATE `of_sys_config` SET `value` = '{$value}' WHERE `name` = '{$name}';";
 
         }
 
-        echo $sql;
+        $result = Yii::$app -> db -> createCommand($sql) -> execute();
+
+        Yii::$app -> config -> getAll(false);
+
+        return true;
     }
 
 }

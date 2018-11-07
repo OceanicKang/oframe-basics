@@ -15,7 +15,7 @@ use yii\helpers\Url;
         </li>
 
         <li class="layui-nav-item layui-hide-xs" lay-unselect>
-            <a href="<?php echo Yii::$app -> request -> hostInfo ?>" target="_blank" title="前台">
+            <a href="<?php echo Yii::$app -> config -> get('WEB_SITE_DOMAIN') ? Yii::$app -> config -> get('WEB_SITE_DOMAIN') : Yii::$app -> request -> hostInfo ?>" target="_blank" title="前台">
                 <i class="layui-icon layui-icon-website"></i>
             </a>
         </li>

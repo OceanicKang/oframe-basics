@@ -24,7 +24,7 @@ AppAsset::register($this);
 
     <?= Html::csrfMetaTags() ?>
 
-    <title><?php echo Yii::$app -> params['System_Info']['ch_name'] ?></title>
+    <title><?php echo Yii::$app -> config -> get('WEB_SITE_TITLE') ?></title>
 
     <?php $this->head() ?>
 

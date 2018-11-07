@@ -29,10 +29,40 @@ return [
     /** ------ 默认禁止删除的配置标识 ------ **/
     'defaultNotDelConfigName' => [
 
+        'SYS',
+        'WEB_SITE',
+        'WEB_SITE_TITLE',
+        'WEB_SITE_LOGO_NAME',
+        'WEB_SITE_AD_NAME',
+        'WEB_SITE_DOMAIN',
+        'WEB_SITE_CACHE',
+        'WEB_MAX_FILE_SIZE',
+        'WEB_FILE_TYPE',
+        'WEB_SITE_INDEX_TITLE',
+        'WEB_META_KEY',
+        'WEB_META_DESCRIBE',
+        'WEB_COPY_RIGHT',
+
+        'SYS_EMAIL',
+        'SYS_EMAIL_HOST',
+        'SYS_EMAIL_PORT',
+        'SYS_EMAIL_USERNAME',
+        'SYS_EMAIL_NICKNAME',
+        'SYS_EMAIL_PASSWORD',
+        'SYS_EMAIL_ENCRYPTION',
+
     ],
 
     /** ------ 默认禁止删除的菜单路由 ------ **/
     'defaultNotDelMenuUrl' => [
+
+        'SYS',
+        '/sys/setting/web',
+        '/sys/setting/email',
+
+        'RBAC',
+        '/sys/rbac/role',
+        '/sys/rbac/accredit',
 
     ],
 

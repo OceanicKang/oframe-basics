@@ -62,6 +62,8 @@ class Config extends ActiveRecord
             ['describe', 'string', 'max' => 1000],
 
             ['value', 'string'],
+            
+            ['value', 'default', 'value' => ''],
 
             [['pid', 'sort', 'append', 'updated'], 'integer'],
 

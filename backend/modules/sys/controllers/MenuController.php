@@ -93,9 +93,10 @@ class MenuController extends \backend\controllers\BController
      */
     public function actionStatusDel($id)
     {
-        $url = Menu::TYPE_SIDE == $model -> type ? 'side-menu' : 'sys-menu';
 
         $model = $this -> findModel($id);
+
+        $url = Menu::TYPE_SIDE == $model -> type ? 'side-menu' : 'sys-menu';
 
         if (in_array($model -> url, Yii::$app -> params['notDelMenuUrl']))
             return $this -> message('该菜单为系统核心菜单，禁止删除', $this -> redirect([$url]), 'error');
@@ -132,9 +133,10 @@ class MenuController extends \backend\controllers\BController
      */
     public function actionRestore($id)
     {
-        $url = Menu::TYPE_SIDE == $model -> type ? 'side-menu' : 'sys-menu';
         
         $model = $this -> findModel($id);
+        
+        $url = Menu::TYPE_SIDE == $model -> type ? 'side-menu' : 'sys-menu';
 
         if (in_array($model -> url, Yii::$app -> params['notDelMenuUrl']))
             return $this -> message('该菜单为系统核心菜单，禁止删除', $this -> redirect([$url]), 'error');

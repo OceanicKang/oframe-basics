@@ -44,6 +44,14 @@ class SettingController extends \backend\controllers\BController
     {
         $model = new Setting;
 
+        if (Yii::$app -> request -> isPost) {
+
+            return Setting::updateValues(Yii::$app -> request -> post()) ? 
+                    $this -> message('保存成功', $this -> redirect(['web'])) :
+                    $this -> message('保存失败', $this -> redirect(['web']), 'error');
+
+        }
+
         return $this -> render('web', [
             'model' => $model,
             'config' => $this -> config
@@ -59,9 +67,47 @@ class SettingController extends \backend\controllers\BController
     {
         $model = new Setting;
 
+        if (Yii::$app -> request -> isPost) {
+
+            return Setting::updateValues(Yii::$app -> request -> post()) ? 
+                    $this -> message('保存成功', $this -> redirect(['email'])) :
+                    $this -> message('保存失败', $this -> redirect(['email']), 'error');
+
+        }
+
         return $this -> render('email', [
+            'model' => $model,
             'config' => $this -> config
         ]);
+    }
+
+    /**
+     * 发送测试邮件
+     * @Author OceanicKang 2018-11-07
+     * @return string      [description]
+     */
+    public function actionSendEmail()
+    {
+        try {
+
+            Yii::$app
+                -> mailer
+                -> compose()
+                -> setFrom([
+                    Yii::$app -> config -> get('SYS_EMAIL_USERNAME') => Yii::$app -> config -> get('SYS_EMAIL_NICKNAME')
+                ])
+                -> setTo(Yii::$app -> user -> identity -> email)
+                -> setSubject(Yii::$app -> config -> get('SYS_EMAIL_NICKNAME') . ' - 测试邮件')
+                -> setTextBody('这是一份测试邮件')
+                -> send();
+
+        } catch (\Exception $e) {
+
+            return $this -> message($e, $this -> redirect(['email']), 'error');
+
+        }
+
+        return $this -> message('发送成功', $this -> redirect(['email']));
     }
 
     /**
