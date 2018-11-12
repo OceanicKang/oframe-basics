@@ -25,11 +25,17 @@ class BController extends \oframe\basics\common\controllers\BaseController
         // 禁止删除的配置标识
         Yii::$app -> params['notDelConfigName'] = array_merge(Yii::$app -> params['defaultNotDelConfigName'], Yii::$app -> params['notDelConfigName']); 
         // 禁止删除的菜单路由
-        Yii::$app -> params['notDelMenuUrl'] = array_merge(Yii::$app -> params['defaultNotDelMenuUrl'], Yii::$app -> params['notDelMenuUrl']); 
+        Yii::$app -> params['notDelMenuUrl'] = array_merge(Yii::$app -> params['defaultNotDelMenuUrl'], Yii::$app -> params['notDelMenuUrl']);
+
+        // 禁止删除的权限路由
+        Yii::$app -> params['notDelRbacUrl'] = array_merge(Yii::$app -> params['defaultNotDelRbacUrl'], Yii::$app -> params['notDelRbacUrl']);
+
         // 无需RBAC验证的路由
-        Yii::$app -> params['notAuthRoute'] = array_merge(Yii::$app -> params['defaultNotAuthRoute'], Yii::$app -> params['notAuthRoute']); 
+        Yii::$app -> params['notAuthRoute'] = array_merge(Yii::$app -> params['defaultNotAuthRoute'], Yii::$app -> params['notAuthRoute']);
+
         // 无需RBAC验证的方法
-        Yii::$app -> params['notAuthAction'] = array_merge(Yii::$app -> params['defaultNotAuthAction'], Yii::$app -> params['notAuthAction']); 
+        Yii::$app -> params['notAuthAction'] = array_merge(Yii::$app -> params['defaultNotAuthAction'], Yii::$app -> params['notAuthAction']);
+
 
         return parent::init();
     }

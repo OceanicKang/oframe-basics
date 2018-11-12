@@ -35,7 +35,7 @@ AppAsset::register($this);
     
 <?php $this->beginBody() ?>
 
-<div class="layui-fluid layui-anim layui-anim-upbit" data-anim="layui-anim-upbit">
+<div class="layui-fluid layui-anim layui-anim-upbit" data-anim="layui-anim-upbit" style="padding-bottom: 100px;">
     <div class="layui-row layui-col-space15">
 
 

@@ -90,7 +90,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                         <th class="of-txt-nowrap">
                                             <div class="layui-form layui-input-inline">
                                                 <input  type="number" name="" class="layui-input" min="0"
-                                                        value="<?php echo $config['sort'] ?>"
+                                                        value="<?php echo $config['sort'] ?>" style="height: 30px;"
                                                         onchange="rfSort(this, <?php echo $config['id']; ?>)">
                                             </div>
                                         </th>

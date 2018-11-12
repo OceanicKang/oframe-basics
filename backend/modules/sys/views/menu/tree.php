@@ -43,7 +43,7 @@
         <td>
             <div class="layui-form layui-input-inline">
                 <input  type="number" name="" class="layui-input" min="0"
-                        value="<?php echo $menu['sort'] ?>"
+                        value="<?php echo $menu['sort'] ?>" style="height: 30px;"
                         onchange="rfSort(this, <?php echo $menu['id']; ?>)">
             </div>
         </td>

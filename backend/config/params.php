@@ -66,6 +66,29 @@ return [
 
     ],
 
+    /** ------ 默认禁止删除的权限路由 ------ **/
+    'defaultNotDelRbacUrl' => [
+
+        'sys-extend',
+        'sys-extend-menu',
+        '/sys/menu/side-menu',
+        '/sys/menu/sys-menu',
+        '/sys/menu/edit',
+        '/sys/menu/recycle',
+        '/sys/menu/restore',
+        '/sys/menu/status-del',
+        '/sys/menu/delete',
+        'sys-extend-config',
+        '/sys/config/index',
+        '/sys/config/edit',
+        '/sys/config/recycle',
+        '/sys/config/restore',
+        '/sys/config/status-del',
+        '/sys/config/delete',
+
+
+    ],
+
 
     /** ------ 默认无需RBAC验证的路由 ------ **/
     'defaultNotAuthRoute' => [

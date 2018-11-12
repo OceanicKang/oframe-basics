@@ -14,14 +14,14 @@ $config = [
 
         // ],
 
-        // /** ------ RBAC 配置 ------ **/
-        // 'authManager' => [
-        //     'class' => 'yii\rbac\DbManager', // 认证类名称
-        //     'ruleTable' => '{{%sys_auth_1_rule}}',
-        //     'itemTable' => '{{%sys_auth_2_item}}', // 认证项表名称
-        //     'assignmentTable' => '{{%sys_auth_3_assignment}}', // 认证项赋权关系
-        //     'itemChildTable' => '{{%sys_auth_4_item_child}}', // 认证项父子关系
-        // ],
+        /** ------ RBAC 配置 ------ **/
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // 认证类名称
+            'ruleTable' => '{{%sys_auth_1_rule}}',
+            'itemTable' => '{{%sys_auth_2_item}}', // 认证项表名称
+            'assignmentTable' => '{{%sys_auth_3_assignment}}', // 认证项赋权关系
+            'itemChildTable' => '{{%sys_auth_4_item_child}}', // 认证项父子关系
+        ],
 
         /** ------ 资源替换 ------ **/
         'assetManager' => [
