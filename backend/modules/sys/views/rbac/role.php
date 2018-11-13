@@ -41,14 +41,57 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                         <th class="of-txt-nowrap">创建时间</th>
                         <th class="of-txt-nowrap">更新时间</th>
                         <th class="of-txt-nowrap">排序</th>
-                        <th class="of-txt-nowrap">操作</th>
+                        <th class="of-txt-nowrap" style="width: 200px;">操作</th>
                     </tr> 
                 </thead>
                 <tbody>
 
                     <?php foreach ($models as $model): ?>
 
+                        <tr>
 
+                            <td class="of-txt-center"></td>
+
+                            <td class="of-txt-nowrap"><?php echo $model['name']; ?></td>
+
+                            <td class="of-txt-nowrap"><?php echo $model['description']; ?></td>
+
+                            <td class="of-txt-nowrap"><?php echo date('Y/m/d H:i', $model['append']); ?></td>
+
+                            <td class="of-txt-nowrap"><?php echo date('Y/m/d H:i', $model['updated']); ?></td>
+
+                            <td>
+                                <div class="layui-form layui-input-inline">
+                                    <input  type="number" name="" class="layui-input" min="0"
+                                            value="<?php echo $model['sort'] ?>" style="height: 30px;"
+                                            onchange="rfSort(this, <?php echo $model['id']; ?>)">
+                                </div>
+                            </td>
+
+                            <td class="of-txt-nowrap">
+
+                                <div class="layui-btn-group">
+
+                                    <a  href="<?php echo Url::to(['role-edit', 'id' => $model['id']]); ?>" 
+                                        class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                                        <i class="layui-icon layui-icon-edit"></i>
+                                    </a>
+
+                                    <a  href="<?php echo Url::to(['role-del', 'id' => $model['id']]) ?>"
+                                        class="layui-btn layui-btn-primary layui-btn-sm of-txt-danger" title="删除" onclick="delDanger(this);return false;">
+                                        <i class="layui-icon layui-icon-delete"></i>
+                                    </a>
+
+                                </div>
+
+                                <a  href="<?php echo Url::to(['accredit-assign', 'parent' => $model['name']]) ?>"
+                                    class="layui-btn layui-btn-primary layui-btn-sm" title="分配权限">
+                                    分配权限
+                                </a>
+
+                            </td>
+                            
+                        </tr>
 
                     <?php endforeach; ?>
                     

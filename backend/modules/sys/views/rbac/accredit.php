@@ -67,7 +67,13 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                                     <tr level="<?php echo $model['level'] ?>">
 
-                                        <td class="of-txt-center"></td>
+                                        <td class="of-txt-center">
+                                            <?php if ($model['child']): ?>
+                                                <a href="javascript:(0);" id="<?php echo $model['id']; ?>" onclick="fold(this)" >
+                                                    <i class="zmdi zmdi-minus"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
 
                                         <td>
                                             <a  href="<?php echo \yii\helpers\Url::to([ 'accredit-edit',

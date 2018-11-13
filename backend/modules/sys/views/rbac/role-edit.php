@@ -22,7 +22,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
                 ]) ?>
 
     <!-- 角色名称 -->
-    <?php echo $form -> field($model , 'description') -> textInput([
+    <?php echo $form -> field($model , 'name') -> textInput([
                     'placeholder' => '请填写角色名称',
                     'lay-verify' => 'required',
                 ]) -> label('角色名称'); ?>

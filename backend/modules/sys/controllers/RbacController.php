@@ -19,13 +19,7 @@ class RbacController extends \backend\controllers\BController
      */
     public function actionAccredit()
     {
-        $accredit = AuthItem::find()
-                    -> where(['type' => AuthItem::AUTH])
-                    -> orderBy('sort asc, id asc')
-                    -> asArray()
-                    -> all();
-
-        $accredit = SysArrayHelper::itemsMerge($accredit, 'id', 'pid', 0);
+        $accredit = AuthItem::getAuth();
 
         return $this -> render('accredit', [
             'models' => $accredit
@@ -33,7 +27,7 @@ class RbacController extends \backend\controllers\BController
     }
 
     /**
-     * 编辑|删除 权限
+     * 编辑|新增 权限
      *
      * @return string [<description>]
      */
@@ -97,6 +91,46 @@ class RbacController extends \backend\controllers\BController
         return $this -> message('未找到该权限', $this -> redirect(['accredit']), 'error');
     }
 
+
+    /**
+     * 给角色分配权限
+     *
+     * @return string [<description>]
+     */
+    public function actionAccreditAssign($parent)
+    {
+        $model = new AuthItemChild;
+
+        $accredit = AuthItem::getAuth();
+
+        $AuthItemChild = AuthItemChild::find()
+                            -> where(['parent' => $parent])
+                            -> asArray() -> all();
+
+        $AuthItemChild = array_column($AuthItemChild, 'child');
+
+        if (Yii::$app -> request -> isPost) {
+
+            $post = Yii::$app -> request -> post();
+
+            $post['child'] = isset($post['child']) ? $post['child'] : [];
+
+            $result = AuthItem::setAccreditAssign($parent, $post['child']);
+
+            return $result !== true ?
+                    $this -> message($result, $this -> redirect(['accredit-assign', 'parent' => $parent]), 'error') :
+                    $this -> message('权限分配成功', $this -> redirect(['accredit-assign', 'parent' => $parent]));
+
+        }
+
+        return $this -> render('accredit-assign', [
+            'model' => $model,
+            'parent' => $parent,
+            'accredit' => $accredit,
+            'AuthItemChild' => $AuthItemChild
+        ]);
+    }
+
     // 角色 role =========================================
     
     /**
@@ -129,7 +163,7 @@ class RbacController extends \backend\controllers\BController
         if (Yii::$app -> request -> isPost) {
 
             return ($model -> load(Yii::$app -> request -> post()) && $model -> save()) ?
-                    $this -> redirect(['role']) :
+                    $this -> message('操作成功', $this -> redirect(['role'])) :
                     $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['role']), 'error');
 
         }
@@ -137,6 +171,52 @@ class RbacController extends \backend\controllers\BController
         return $this -> render('role-edit', [
             'model' => $model
         ]);
+    }
+
+    /**
+     * 删除 角色
+     *
+     * @return string [<description>]
+     */
+    public function actionRoleDel($id)
+    {
+        if ($model = $this -> findModel($id)) {
+
+            if (in_array($model -> name, Yii::$app -> params['defaultNotDelRoleName']))
+                return $this -> message('该角色不可删除', $this -> redirect(['role']), 'error');
+
+            return $model -> delete() ?
+                    $this -> message('删除成功', $this -> redirect(['role'])) :
+                    $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['role']), 'error');
+
+        }
+
+        return $this -> message('未找到该角色', $this -> redirect(['role']), 'error');
+    }
+
+    // 给用户分配角色
+    public function actionRoleAssign($user_id, $username = '')
+    {
+
+        $model = AuthAssignment::findOne(['user_id' => $user_id]);
+
+        !$model && $model = new AuthAssignment;
+
+        if (Yii::$app -> request -> isPost) {
+
+            $model -> user_id = $user_id;
+
+            return $model -> load(Yii::$app -> request -> post()) && $model -> save() ?
+                    $this -> message('分配成功', $this -> redirect(['/sys/manager/index'])) :
+                    $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['/sys/manager/index']), 'error');
+
+        }
+
+        return $this -> render('role-assign', [
+            'model' => $model,
+            'username' => $username
+        ]);
+
     }
     
 

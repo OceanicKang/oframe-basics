@@ -70,7 +70,13 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th class="of-width-30 of-txt-center"></th>
+                                        <th class="of-width-30 of-txt-center">
+                                            <?php if ($config['child']): ?>
+                                                <a href="javascript:(0);" id="<?php echo $config['id']; ?>" onclick="fold(this)" >
+                                                    <i class="zmdi zmdi-minus"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                        </th>
                                         <th class="of-width-20 of-txt-center">
                                             
                                             <a  href="<?php echo \yii\helpers\Url::to([ 'edit', 

@@ -6,6 +6,7 @@ use Yii;
 use oframe\basics\common\helpers\SysArrayHelper;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use common\models\backend\AuthItemChild;
 
 abstract class AuthItem extends ActiveRecord
 {
@@ -14,6 +15,8 @@ abstract class AuthItem extends ActiveRecord
 
     // 权限
     const AUTH = 2;
+
+    const AUTH_CACHE = 'sys:auth:info';
 
     /**
      * @var array [<description>]
@@ -122,11 +125,10 @@ abstract class AuthItem extends ActiveRecord
 
             if ($result !== 0 && !$result) throw new \Exception('权限预处理失败');
 
-            $result = $data ? 
-                        Yii::$app -> db -> createCommand() -> batchInsert(AuthItemChild::tableName(), [
-                            'parent',
-                            'child',
-                        ], $data) -> execute() : true;
+            $result = $data ? Yii::$app -> db -> createCommand() -> batchInsert(AuthItemChild::tableName(), [
+                                    'parent',
+                                    'child',
+                                ], $data) -> execute() : true;
 
             if (!$result) throw new \Exception('分配权限失败');
 
@@ -143,12 +145,85 @@ abstract class AuthItem extends ActiveRecord
         return true;
     }
 
+    /**
+     * 获取权限路由
+     */
+    public static function getAuth()
+    {
+        $array = Yii::$app -> cache -> get(self::AUTH_CACHE);
+
+        if (!$array) {
+
+            $array = self::find()
+                    -> where(['type' => self::AUTH])
+                    -> orderBy('sort asc, id asc')
+                    -> asArray()
+                    -> all();
+
+            $array = SysArrayHelper::itemsMerge($array, 'id', 'pid', 0);
+
+            Yii::$app -> cache -> set(self::AUTH_CACHE, $array);
+
+        }
+
+        return $array;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthAssignments()
+    {
+        return $this -> hasMany($this -> auth_assignment, ['item_name' => 'name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRuleName()
+    {
+        return $this -> hasOne($this -> auth_rule, ['name' => 'rule_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthItemChildren()
+    {
+        return $this -> hasMany($this -> auth_item_child, ['parent' => 'name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthItemChildren0()
+    {
+        return $this -> hasMany($this -> auth_item_child, ['child' => 'name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getChildren()
+    {
+        return $this -> hasMany($this -> auth_item, ['name' => 'child']) -> viaTable('{{%auth_4_item_child}}', ['parent' => 'name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParents()
+    {
+        return $this -> hasMany($this -> auth_item, ['name' => 'parent']) -> viaTable('{{%auth_4_item_child}}', ['child' => 'name']);
+    }
 
     /**
      * 插入前行为
      */
     public function beforeSave($insert)
     {
+        Yii::$app -> cache -> delete(AuthItem::AUTH_CACHE);
+
         if ($this -> isNewRecord) {
 
             // 设置唯一id
@@ -161,6 +236,13 @@ abstract class AuthItem extends ActiveRecord
         }
 
         return parent::beforeSave($insert);
+    }
+
+    public function beforeDelete()
+    {
+        Yii::$app -> cache -> delete(AuthItem::AUTH_CACHE);
+
+        return parent::beforeDelete();
     }
 
     /**

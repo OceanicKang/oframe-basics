@@ -66,6 +66,8 @@ class BaseController extends \yii\web\Controller
         echo "<pre>";
 
         print_r($array);
+
+        exit();
     }
     
 }

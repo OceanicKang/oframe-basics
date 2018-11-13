@@ -86,7 +86,26 @@ return [
         '/sys/config/status-del',
         '/sys/config/delete',
 
+        'sys-rbac',
+        'sys-rbac-accredit',
+        '/sys/rbac/accredit',
+        '/sys/rbac/accredit-edit',
+        '/sys/rbac/accredit-del',
+        '/sys/rbac/accredit-assign',
+        'sys-rbac-role',
+        '/sys/rbac/role',
+        '/sys/rbac/role-edit',
+        '/sys/rbac/role-del',
+        '/sys/rbac/role-assign',
+        'sys-rbac-rule',
+        '/sys/rbac/rule',
 
+
+    ],
+
+    /** ------ 默认禁止删除的角色名称 ------ **/
+    'defaultNotDelRoleName' => [
+        '总管理员'
     ],
 
 
