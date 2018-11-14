@@ -113,7 +113,7 @@ class RbacController extends \backend\controllers\BController
 
             $post = Yii::$app -> request -> post();
 
-            $post['child'] = isset($post['child']) ? $post['child'] : [];
+            $post['child'] = $post['child'] ?? [];
 
             $result = AuthItem::setAccreditAssign($parent, $post['child']);
 

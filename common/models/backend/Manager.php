@@ -5,6 +5,7 @@ namespace oframe\basics\common\models\backend;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use common\models\backend\AuthAssignment;
 
 class Manager extends \common\models\base\User
 {
@@ -46,6 +47,14 @@ class Manager extends \common\models\base\User
             'append'        => '创建时间',
             'updated'       => '修改时间',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRoleName()
+    {
+        return $this -> hasOne(AuthAssignment::className(), ['user_id' => 'id']);
     }
 
 
