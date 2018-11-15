@@ -51,10 +51,13 @@
                     <i class="layui-icon layui-icon-edit"></i>
                 </a>
 
-                <a  href="<?php echo \yii\helpers\Url::to(['accredit-del', 'id' => $model['id']]) ?>"
-                    class="layui-btn layui-btn-primary layui-btn-sm of-txt-danger" title="删除" onclick="delDanger(this);return false;">
+                <button  href="<?php echo \yii\helpers\Url::to(['accredit-del', 'id' => $model['id']]) ?>"
+                    class="layui-btn <?php echo in_array($model['name'], Yii::$app -> params['notDelRbacUrl']) ? 'layui-btn-disabled' : 'layui-btn-primary'; ?> layui-btn-sm of-txt-danger"
+                    title="删除"
+                    <?php echo in_array($model['name'], Yii::$app -> params['notDelRbacUrl']) ? '' : 'onclick="delDanger(this);return false;"'; ?>
+                    >
                     <i class="layui-icon layui-icon-delete"></i>
-                </a>
+                </button>
 
             </div>
 

@@ -68,10 +68,13 @@
                 <i class="layui-icon layui-icon-edit"></i>
             </a>
 
-            <a  href="<?php echo \yii\helpers\Url::to(['status-del', 'id' => $config['id'], 'anchor' => $anchor]) ?>"
-                class="layui-btn layui-btn-primary layui-btn-sm of-txt-danger" title="删除" onclick="delDanger(this);return false;">
+            <button  href="<?php echo \yii\helpers\Url::to(['status-del', 'id' => $config['id'], 'anchor' => $anchor]) ?>"
+                     class="layui-btn <?php echo in_array($config['name'], Yii::$app -> params['notDelConfigName']) ? 'layui-btn-disabled' : 'layui-btn-primary'; ?> layui-btn-sm of-txt-danger"
+                     title="删除"
+                     <?php echo in_array($config['name'], Yii::$app -> params['notDelConfigName']) ? '' : 'onclick="delDanger(this);return false;"'; ?>
+                     >
                 <i class="layui-icon layui-icon-delete"></i>
-            </a>
+            </button>
         </div>
 
     </th>

@@ -103,7 +103,7 @@ class SettingController extends \backend\controllers\BController
 
         } catch (\Exception $e) {
 
-            return $this -> message($e, $this -> redirect(['email']), 'error');
+            return $this -> message($e -> getMessage(), $this -> redirect(['email']), 'error', 10000);
 
         }
 

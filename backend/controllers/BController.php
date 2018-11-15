@@ -3,6 +3,7 @@ namespace oframe\basics\backend\controllers;
 
 use Yii;
 use oframe\basics\common\helpers\AjaxHelper;
+use yii\web\UnauthorizedHttpException;
 
 /**
  * Backend 基类控制器
@@ -121,5 +122,38 @@ class BController extends \oframe\basics\common\controllers\BaseController
         $response -> send();
     }
 
+    /**
+     * RBAC 权限验证
+     *
+     * @return bool [<description>]
+     */
+    public function beforeAction($action)
+    {
+        // 验证是否是总管理员
+        if (!\Yii::$app -> user -> isGuest && in_array(Yii::$app -> user -> id, Yii::$app -> params['adminAccount'])) return true;
+
+        if (!parent::beforeAction($action)) return false;
+
+        // 需要验证的路由
+        $permissionName = '/' . Yii::$app -> controller -> module -> id . 
+                          '/' . Yii::$app -> controller -> id .
+                          '/' . Yii::$app -> controller -> action -> id;
+
+        // 不需要 RBAC 的路由
+        $notAuthRoute = Yii::$app -> params['notAuthRoute'];
+
+        // 不需要 RBAC 的方法
+        $notAuthAction = Yii::$app -> params['notAuthAction'];
+
+        if (in_array($permissionName, $notAuthRoute) || in_array(Yii::$app -> controller -> action -> id, $notAuthAction)) return true;
+
+        if (!Yii::$app -> user -> can($permissionName) && Yii::$app -> getErrorHandler() -> exception === null) {
+
+            throw new UnauthorizedHttpException('对不起，您暂未获得此操作的权限');
+
+        }
+
+        return true;
+    }
     
 }

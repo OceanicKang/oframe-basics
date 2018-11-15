@@ -25,6 +25,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
     <?php echo $form -> field($model , 'name') -> textInput([
                     'placeholder' => '请填写角色名称',
                     'lay-verify' => 'required',
+                    'disabled' => in_array($model -> name, Yii::$app -> params['defaultNotDelRoleName'])
                 ]) -> label('角色名称'); ?>
 
     <!-- 角色说明 -->

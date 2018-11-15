@@ -77,10 +77,13 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                         <i class="layui-icon layui-icon-edit"></i>
                                     </a>
 
-                                    <a  href="<?php echo Url::to(['role-del', 'id' => $model['id']]) ?>"
-                                        class="layui-btn layui-btn-primary layui-btn-sm of-txt-danger" title="删除" onclick="delDanger(this);return false;">
+                                    <button  href="<?php echo Url::to(['role-del', 'id' => $model['id']]) ?>"
+                                        class="layui-btn <?php echo in_array($model['name'], Yii::$app -> params['defaultNotDelRoleName']) ? 'layui-btn-disabled' : 'layui-btn-primary'; ?> layui-btn-sm of-txt-danger"
+                                        title="删除"
+                                        <?php echo in_array($model['name'], Yii::$app -> params['defaultNotDelRoleName']) ? '' : 'onclick="delDanger(this);return false;"'; ?>
+                                        >
                                         <i class="layui-icon layui-icon-delete"></i>
-                                    </a>
+                                    </button>
 
                                 </div>
 

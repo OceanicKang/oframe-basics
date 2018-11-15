@@ -61,8 +61,10 @@ return [
         '/sys/setting/email',
 
         'RBAC',
+        '/sys/manager/index',
         '/sys/rbac/role',
         '/sys/rbac/accredit',
+        '/sys/rbac/rule',
 
     ],
 
@@ -74,6 +76,7 @@ return [
         '/sys/menu/side-menu',
         '/sys/menu/sys-menu',
         '/sys/menu/edit',
+        '/sys/menu/ajax-update',
         '/sys/menu/recycle',
         '/sys/menu/restore',
         '/sys/menu/status-del',
@@ -81,6 +84,7 @@ return [
         'sys-extend-config',
         '/sys/config/index',
         '/sys/config/edit',
+        '/sys/config/ajax-update',
         '/sys/config/recycle',
         '/sys/config/restore',
         '/sys/config/status-del',
@@ -99,6 +103,7 @@ return [
         '/sys/rbac/role-assign',
         'sys-rbac-rule',
         '/sys/rbac/rule',
+        '/sys/rbac/ajax-update',
 
 
     ],
@@ -111,12 +116,22 @@ return [
 
     /** ------ 默认无需RBAC验证的路由 ------ **/
     'defaultNotAuthRoute' => [
+        '/app-backend/site/index',           // HomePage
+        '/app-backend/site/login',           // 登陆
+        '/app-backend/site/register',        // 注册
+        '/app-backend/site/forgot-password', // 忘记密码
+        '/app-backend/site/reset-password',  // 重置密码
+        '/app-backend/site/reset-code',      // 重置验证码
+        '/app-backend/site/get-sms-code',    // 发送手机验证码
+        '/app-backend/site/logout',          // 退出
 
+        '/sys/main/index',                   // 系统首页
+        '/sys/main/setting',                 // 系统管理
     ],
 
     /** ------ 默认无需RBAC验证的方法 ------ **/
     'defaultNotAuthAction' => [
-
+        
     ],
     
 ];

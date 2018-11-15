@@ -64,7 +64,7 @@ abstract class AuthItem extends ActiveRecord
 
             [['name', 'rule_name'], 'string', 'max' => 64],
 
-            [['name', 'id'], 'unique'],
+            [['name', 'id'], 'unique', 'message' => '该{attribute}已存在'],
 
             [['rule_name'], 'exist', 'skipOnError' => true, 'targetClass' => $this -> auth_rule, 'targetAttribute' => ['rule_name' => 'name']],
 

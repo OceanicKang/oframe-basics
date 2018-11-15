@@ -47,7 +47,11 @@
             <div style="padding-bottom: 10px;">
                 <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>
             </div>
-        
+
+            <style type="text/css">
+                .layui-table td, .layui-table-view {border-bottom-width: 0px !important;}
+            </style>
+            
             <div class="layui-form layui-border-box layui-table-view">
                 <div class="layui-table-box">
                     <div class="layui-table-header" style="width: 100%;">
@@ -59,12 +63,17 @@
                                             <span>ID</span>
                                         </div>
                                     </th>
-                                    <th style="width: 14%;">
+                                    <th style="width: 5%;">
+                                        <div class="layui-table-cell" align="center">
+                                            <span>头像</span>
+                                        </div>
+                                    </th>
+                                    <th style="width: 10%;">
                                         <div class="layui-table-cell">
                                             <span>登录名</span>
                                         </div>
                                     </th>
-                                    <th style="width: 14%;">
+                                    <th style="width: 10%;">
                                         <div class="layui-table-cell">
                                             <span>昵称</span>
                                         </div>
@@ -89,44 +98,46 @@
                                             <span>加入时间</span>
                                         </div>
                                     </th>
-                                    <th class="layui-table-col-special" style="width: 11%;">
+                                    <th class="layui-table-col-special" style="width: 14%;border-right-width: 0px;">
                                         <div class="layui-table-cell" align="center">
                                             <span>操作</span>
                                         </div>
                                     </th>
                                 </tr>
                             </thead>
-                        </table>
-                    </div>
-                    <div class="layui-table-body layui-table-main" style="width: 100%;">
-                        <table class="layui-table" style="width: 100%;">
+
                             <tbody>
 
                                 <?php foreach ($models as $model): ?>
                                 <tr>
-                                    <td style="width: 5%;">
+                                    <td>
                                         <div class="layui-table-cell" align="center"><?php echo $model['id']; ?></div>
                                     </td>
-                                    <td style="width: 14%;">
+                                    <td>
+                                        <div class="layui-table-cell" align="center">
+                                            <img style="display: inline-block; width: auto; height: 100%;" src="<?php echo $model['head_img'] ?>">
+                                        </div>
+                                    </td>
+                                    <td>
                                         <div class="layui-table-cell"><?php echo $model['username']; ?></div>
                                     </td>
-                                    <td style="width: 14%;">
+                                    <td>
                                         <div class="layui-table-cell"><?php echo $model['nickname'] ?: $model['username']; ?></div>
                                     </td>
-                                    <td style="width: 14%;">
+                                    <td>
                                         <div class="layui-table-cell"><?php echo $model['mobile_phone'] ?: '提醒该用户及时登记'; ?></div>
                                     </td>
-                                    <td style="width: 14%;">
+                                    <td>
                                         <div class="layui-table-cell"><?php echo $model['email'] ?: '提醒该用户及时登记'; ?></div>
                                     </td>
-                                    <td style="width: 14%;">
-                                        <div class="layui-table-cell"><?php echo $model['roleName'] ?: '未分配'  ?></div>
+                                    <td>
+                                        <div class="layui-table-cell"><?php echo $model['roleName'] ?: '提醒权限管理员及时分配';  ?></div>
                                     </td>
-                                    <td style="width: 14%;">
+                                    <td>
                                         <div class="layui-table-cell"><?php echo date('Y/m/d H:i', $model['append']); ?></div>
                                     </td>
                                     
-                                    <td align="center" class="layui-table-col-special" style="width: 11%;">
+                                    <td align="center" class="layui-table-col-special">
                                         <div class="layui-table-cell">
                                             <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
                                                 <i class="layui-icon layui-icon-edit"></i>编辑

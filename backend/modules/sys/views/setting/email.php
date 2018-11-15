@@ -88,6 +88,8 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
 
                     <a class="layui-btn layui-btn-primary" href="<?php echo Url::to(['send-email']) ?>">发送测试邮件</a>
 
+                    <span>&nbsp;&nbsp;注：发送测试邮件之前请先保存</span>
+
                 </div>
 
             </div>
