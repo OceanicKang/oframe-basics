@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 
-$this -> title = "权限管理";
+$this -> title = '权限管理';
 $this -> params['breadcrumbs'][] = ['label' => '系统管理', 'url' => Url::to(['main/setting'])];
 $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 ?>
@@ -16,13 +16,13 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                 <div class="of-float-r">
                     
-                    <a class="layui-btn layui-btn-normal model" title="添加新菜单" href="<?php echo Url::to(['accredit-edit',
+                    <a class="layui-btn layui-btn-normal model" title="添加新权限类别" href="<?php echo Url::to(['accredit-edit',
                                                                                                             'id' => 0,
                                                                                                             'pid' => 0,
                                                                                                             'level' => 1,
                                                                                                             'p_title' => '无',
                                                                                                             'p_name' => '无']); ?>" >
-                        <i class="layui-icon layui-icon-add-circle-fine" style="margin-right: 5px !important;"></i> 添加新权限
+                        <i class="layui-icon layui-icon-add-circle-fine" style="margin-right: 5px !important;"></i> 添加新类别
                     </a>
 
                 </div>

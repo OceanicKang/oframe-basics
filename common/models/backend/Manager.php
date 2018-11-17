@@ -23,8 +23,9 @@ class Manager extends \common\models\base\User
     public function rules()
     {
         return [
+            [['username', 'password_hash', 'role_id'], 'required', 'message' => '{attribute}不能为空'],
 
-            [['status', 'append', 'updated'], 'integer'],
+            [['status', 'append', 'updated', 'role_id'], 'integer'],
 
             [['username', 'nickname', 'password_hash', 'password_reset_token', 'email', 'head_img'], 'string', 'max' => 255],
 
@@ -46,6 +47,7 @@ class Manager extends \common\models\base\User
     {
         return [
             'id'            => 'ID',
+            'role_id'       => '角色',
             'username'      => '用户名',
             'nickname'      => '昵称',
             'auth_key'      => 'Auth Key',

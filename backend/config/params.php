@@ -35,6 +35,7 @@ return [
         'WEB_SITE_LOGO_NAME',
         'WEB_SITE_AD_NAME',
         'WEB_SITE_DOMAIN',
+        'WEB_PAGE_SIZE',
         'WEB_SITE_CACHE',
         'WEB_MAX_FILE_SIZE',
         'WEB_FILE_TYPE',

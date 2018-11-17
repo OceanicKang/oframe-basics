@@ -19,7 +19,7 @@ class RbacController extends \backend\controllers\BController
      */
     public function actionAccredit()
     {
-        $accredit = AuthItem::getAuth();
+        $accredit = AuthItem::getAuths();
 
         return $this -> render('accredit', [
             'models' => $accredit
@@ -101,7 +101,7 @@ class RbacController extends \backend\controllers\BController
     {
         $model = new AuthItemChild;
 
-        $accredit = AuthItem::getAuth();
+        $accredit = AuthItem::getAuths();
 
         $AuthItemChild = AuthItemChild::find()
                             -> where(['parent' => $parent])

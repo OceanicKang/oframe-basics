@@ -1,3 +1,11 @@
+<?php 
+use yii\helpers\Url;
+
+$this -> title = '后台用户管理';
+$this -> params['breadcrumbs'][] = ['label' => '系统管理', 'url' => Url::to(['main/setting'])];
+$this -> params['breadcrumbs'][] = ['label' => $this -> title];
+?>
+
 <div class="layui-fluid">   
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
@@ -5,19 +13,19 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">登录名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="loginname" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="loginname" placeholder="请输入" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">手机</label>
                     <div class="layui-input-block">
-                        <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="telphone" placeholder="请输入" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-block">
-                        <input type="text" name="email" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="email" placeholder="请输入" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -45,7 +53,7 @@
         <div class="layui-card-body">
 
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>
+                <button href="<?php echo Url::to(['edit', 'id' => 0]) ?>" class="layui-btn layuiadmin-btn-admin model" data-type="add" title="添加用户">添加</button>
             </div>
 
             <style type="text/css">
@@ -54,7 +62,7 @@
             
             <div class="layui-form layui-border-box layui-table-view">
                 <div class="layui-table-box">
-                    <div class="layui-table-header" style="width: 100%;">
+                    <div class="layui-table-header" style="width: 100%; overflow-x: auto;">
                         <table class="layui-table" style="width: 100%;">
                             <thead>
                                 <tr>
@@ -137,9 +145,9 @@
                                         <div class="layui-table-cell"><?php echo date('Y/m/d H:i', $model['append']); ?></div>
                                     </td>
                                     
-                                    <td align="center" class="layui-table-col-special">
+                                    <td align="center" class="layui-table-col-special" style="border-right: none;">
                                         <div class="layui-table-cell">
-                                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">
+                                            <a href="<?php echo Url::to(['edit', 'id' => $model['id']]) ?>" class="layui-btn layui-btn-normal layui-btn-xs model" lay-event="edit" title="编辑 - <?php echo $model['username'] ?>">
                                                 <i class="layui-icon layui-icon-edit"></i>编辑
                                             </a>
                                             <a class="layui-btn <?php echo in_array($model['id'], Yii::$app -> params['adminAccount']) ? 'layui-btn-disabled' : 'layui-btn-danger'; ?>  layui-btn-xs">

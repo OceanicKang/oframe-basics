@@ -13,6 +13,8 @@ abstract class AuthItem extends ActiveRecord
     // 角色
     const ROLE = 1;
 
+    const ROLE_CACHE = 'sys:role:info';
+
     // 权限
     const AUTH = 2;
 
@@ -148,7 +150,7 @@ abstract class AuthItem extends ActiveRecord
     /**
      * 获取权限路由
      */
-    public static function getAuth()
+    public static function getAuths()
     {
         $array = Yii::$app -> cache -> get(self::AUTH_CACHE);
 
@@ -163,6 +165,30 @@ abstract class AuthItem extends ActiveRecord
             $array = SysArrayHelper::itemsMerge($array, 'id', 'pid', 0);
 
             Yii::$app -> cache -> set(self::AUTH_CACHE, $array);
+
+        }
+
+        return $array;
+    }
+
+    /**
+     * 获取角色名称
+     */
+    public static function getRoles()
+    {
+        $array = Yii::$app -> cache -> get(self::ROLE_CACHE);
+
+        if (!$array) {
+
+            $array = self::find()
+                    -> where(['type' => self::ROLE])
+                    -> orderBy('id asc')
+                    -> asArray()
+                    -> all();
+
+            $array = array_column($array, 'name', 'id');
+
+            Yii::$app -> cache -> set(self::ROLE_CACHE, $array);
 
         }
 
@@ -223,6 +249,7 @@ abstract class AuthItem extends ActiveRecord
     public function beforeSave($insert)
     {
         Yii::$app -> cache -> delete(AuthItem::AUTH_CACHE);
+        Yii::$app -> cache -> delete(AuthItem::ROLE_CACHE);
 
         if ($this -> isNewRecord) {
 
@@ -241,6 +268,7 @@ abstract class AuthItem extends ActiveRecord
     public function beforeDelete()
     {
         Yii::$app -> cache -> delete(AuthItem::AUTH_CACHE);
+        Yii::$app -> cache -> delete(AuthItem::ROLE_CACHE);
 
         return parent::beforeDelete();
     }

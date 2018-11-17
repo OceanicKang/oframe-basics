@@ -18,7 +18,7 @@ class BaseController extends \yii\web\Controller
 
     public function init()
     {
-        // $this -> _pageSize = Yii::$app -> config -> get('SYS_SITE_PAGE') ? Yii::$app -> config -> get('SYS_SITE_PAGE') : $this -> _pageSize;
+        $this -> _pageSize = Yii::$app -> config -> get('WEB_PAGE_SIZE') ?: $this -> _pageSize;
 
         return parent::init();
     }

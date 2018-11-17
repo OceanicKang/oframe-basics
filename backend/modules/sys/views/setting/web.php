@@ -47,6 +47,22 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
                         ]) -> label($config['WEB_SITE_DOMAIN']['title']); ?>
 
             <!-- 缓存时间 -->
+            <?php echo $form -> field($model , 'WEB_PAGE_SIZE', [
+                            'template' => " <div class=\"layui-form-item\">
+                                                {label}
+                                                <div class=\"layui-input-inline\" style=\"width: 80px;\">
+                                                    {input}
+                                                </div>
+                                                <div class=\"layui-input-inline layui-input-company\">条</div>
+                                                <div class=\"layui-form-mid layui-word-aux\">{$config['WEB_PAGE_SIZE']['describe']}</div>
+                                            </div>"
+
+                        ]) -> textInput([
+                            'type' => 'number',
+                            'lay-verify' => 'number',
+                        ]) -> label($config['WEB_PAGE_SIZE']['title']); ?>
+
+            <!-- 缓存时间 -->
             <?php echo $form -> field($model , 'WEB_SITE_CACHE', [
                             'template' => " <div class=\"layui-form-item\">
                                                 {label}

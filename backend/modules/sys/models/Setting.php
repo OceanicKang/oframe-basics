@@ -38,6 +38,12 @@ class Setting extends ActiveRecord
     public $WEB_SITE_AD_NAME = '';
 
     /**
+     * AD NAME
+     * @var string
+     */
+    public $WEB_PAGE_SIZE = 0;
+
+    /**
      * 缓存时间
      * @var number
      */
@@ -124,6 +130,8 @@ class Setting extends ActiveRecord
         $this -> WEB_SITE_AD_NAME     = Yii::$app -> config -> get('WEB_SITE_AD_NAME');
         $this -> WEB_SITE_DOMAIN      = Yii::$app -> config -> get('WEB_SITE_DOMAIN') ?
                                         Yii::$app -> config -> get('WEB_SITE_DOMAIN') : Yii::$app -> request -> hostInfo;
+        $this -> WEB_PAGE_SIZE        = Yii::$app -> config -> get('WEB_PAGE_SIZE') ?
+                                        Yii::$app -> config -> get('WEB_PAGE_SIZE') : 0;     
         $this -> WEB_SITE_CACHE       = Yii::$app -> config -> get('WEB_SITE_CACHE') ?
                                         Yii::$app -> config -> get('WEB_SITE_CACHE') : 0;
         $this -> WEB_MAX_FILE_SIZE    = Yii::$app -> config -> get('WEB_MAX_FILE_SIZE') ?
