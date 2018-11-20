@@ -44,9 +44,11 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                 <?php foreach ($Level_1['child'] as $Level_2): ?>
 
-                <?php if ($Level_2['child']): ?>
                 <div class="layui-col-md4">
                     <div class="layui-card">
+
+                        <?php if ($Level_2['child']): ?>
+
                         <div class="layui-card-header">
                             <?php echo $Level_2['description'] ?>
                             <a href="javascript:void(0);" class="layui-a-tips" onclick="selectAll(this);" value="0">全 选</a>
@@ -62,15 +64,19 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                             <?php endforeach; ?>
 
                         </div>
+
+                        <?php else: ?>
+
+                        <div class="layui-card-body">
+                            <div class="checkbox">
+                                <input type="checkbox" name="child[]" title="<?php echo $Level_2['description'] ?>" value="<?php echo $Level_2['name'] ?>" lay-skin="primary" <?php echo in_array($Level_2['name'], $AuthItemChild) ? 'checked' : ''; ?>> 
+                            </div>
+                        </div>
+
+                        <?php endif; ?>
+                        
                     </div>
                 </div>
-                <?php else: ?>
-
-                <div class="layui-col-md4 checkbox">
-                    <input type="checkbox" name="child[]" title="<?php echo $Level_2['description'] ?>" value="<?php echo $Level_2['name'] ?>" lay-skin="primary" <?php echo in_array($Level_3['name'], $AuthItemChild) ? 'checked' : ''; ?>> 
-                </div>
-
-                <?php endif; ?>
 
                 <?php endforeach; ?>
 

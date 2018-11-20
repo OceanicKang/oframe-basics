@@ -15,6 +15,7 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
         <div class="layui-card-body">
 
             <?php $form = ActiveForm::begin([
+                        'action' => Url::to(['update', 'action' => 'email']),
                         'options' => ['class' => 'layui-form', 'wid100' => '', 'lay-filter' => ''],
                         'fieldConfig' => [
                             'template' => " <div class=\"layui-form-item\">

@@ -5,6 +5,7 @@ namespace oframe\basics\common\models\backend;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use common\models\backend\AuthItem;
 
 /**
  * This is the model class for table "{{%auth_assignment}}".
@@ -47,9 +48,9 @@ abstract class AuthAssignment extends ActiveRecord
 
             [['item_name', 'user_id'], 'required'],
 
-            [['append', 'updated'], 'integer'],
+            [['user_id', 'append', 'updated'], 'integer'],
 
-            [['item_name', 'user_id'], 'string', 'max' => 64],
+            [['item_name'], 'string', 'max' => 64],
 
             [['item_name'], 'exist', 'skipOnError' => true, 'targetClass' => $this -> auth_item, 'targetAttribute' => ['item_name' => 'name']],
 
@@ -68,18 +69,7 @@ abstract class AuthAssignment extends ActiveRecord
             'updated'   => '修改时间'
         ];
     }
-
-    /**
-     * 获取用户角色名
-     */
-    public static function getManagerItem($user_id)
-    {
-        $model = self::findOne(['user_id' => $user_id]);
-
-        return $model ? $model -> item_name : '未分配角色';
-    }
-
-
+    
     /**
      * @return array
      */

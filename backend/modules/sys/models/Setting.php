@@ -2,13 +2,12 @@
 namespace oframe\basics\backend\modules\sys\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 use oframe\basics\common\models\common\Config;
 
 /**
  * 网站设置 model
  */
-class Setting extends ActiveRecord
+class Setting extends \yii\base\Model
 {
 
     /**------ 网站设置 ------**/
@@ -60,12 +59,6 @@ class Setting extends ActiveRecord
      * @var string
      */
     public $WEB_FILE_TYPE = '';
-
-    /**
-     * 首页标题
-     * @var string
-     */
-    public $WEB_SITE_INDEX_TITLE = '';
 
     /**
      * META关键字
@@ -137,7 +130,6 @@ class Setting extends ActiveRecord
         $this -> WEB_MAX_FILE_SIZE    = Yii::$app -> config -> get('WEB_MAX_FILE_SIZE') ?
                                         Yii::$app -> config -> get('WEB_MAX_FILE_SIZE') : 0;
         $this -> WEB_FILE_TYPE        = Yii::$app -> config -> get('WEB_FILE_TYPE');
-        $this -> WEB_SITE_INDEX_TITLE = Yii::$app -> config -> get('WEB_SITE_INDEX_TITLE');
         $this -> WEB_META_KEY         = Yii::$app -> config -> get('WEB_META_KEY');
         $this -> WEB_META_DESCRIBE    = Yii::$app -> config -> get('WEB_META_DESCRIBE');
         $this -> WEB_COPY_RIGHT       = Yii::$app -> config -> get('WEB_COPY_RIGHT');

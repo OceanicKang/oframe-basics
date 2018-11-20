@@ -42,18 +42,8 @@ class SettingController extends \backend\controllers\BController
      */
     public function actionWeb()
     {
-        $model = new Setting;
-
-        if (Yii::$app -> request -> isPost) {
-
-            return Setting::updateValues(Yii::$app -> request -> post()) ? 
-                    $this -> message('保存成功', $this -> redirect(['web'])) :
-                    $this -> message('保存失败', $this -> redirect(['web']), 'error');
-
-        }
-
         return $this -> render('web', [
-            'model' => $model,
+            'model' => new Setting,
             'config' => $this -> config
         ]);
     }
@@ -65,20 +55,23 @@ class SettingController extends \backend\controllers\BController
      */
     public function actionEmail()
     {
-        $model = new Setting;
-
-        if (Yii::$app -> request -> isPost) {
-
-            return Setting::updateValues(Yii::$app -> request -> post()) ? 
-                    $this -> message('保存成功', $this -> redirect(['email'])) :
-                    $this -> message('保存失败', $this -> redirect(['email']), 'error');
-
-        }
-
         return $this -> render('email', [
-            'model' => $model,
+            'model' => new Setting,
             'config' => $this -> config
         ]);
+    }
+
+    /**
+     * 更新 config value
+     * @Author OceanicKang 2018-11-19
+     * @param  string      $action    [description]
+     * @return string                 [description]
+     */
+    public function actionUpdate($action = 'web')
+    {
+        return Yii::$app -> request -> isPost && Setting::updateValues(Yii::$app -> request -> post()) ? 
+                    $this -> message('保存成功', $this -> redirect([$action])) :
+                    $this -> message('保存失败', $this -> redirect([$action]), 'error');
     }
 
     /**
@@ -97,7 +90,7 @@ class SettingController extends \backend\controllers\BController
                     Yii::$app -> config -> get('SYS_EMAIL_USERNAME') => Yii::$app -> config -> get('SYS_EMAIL_NICKNAME')
                 ])
                 -> setTo(Yii::$app -> user -> identity -> email)
-                -> setSubject(Yii::$app -> config -> get('SYS_EMAIL_NICKNAME') . ' - 测试邮件')
+                -> setSubject(Yii::$app -> config -> get('SYS_EMAIL_NICKNAME') . '-测试邮件')
                 -> setTextBody('这是一份测试邮件')
                 -> send();
 

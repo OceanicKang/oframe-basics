@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this -> title = "网站设置";
 $this -> params['breadcrumbs'] = ['label' => $this -> title];
@@ -14,6 +15,7 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
         <div class="layui-card-body" pad15>
 
             <?php $form = ActiveForm::begin([
+                        'action' => Url::to(['update', 'action' => 'web']),
                         'options' => ['class' => 'layui-form', 'wid100' => '', 'lay-filter' => ''],
                         'fieldConfig' => [
                             'template' => ' <div class="layui-form-item">
@@ -104,10 +106,6 @@ $this -> params['breadcrumbs'] = ['label' => $this -> title];
                                                 <div class=\"layui-form-mid layui-word-aux\">{$config['WEB_FILE_TYPE']['describe']}</div>
                                             </div>"
                         ]) -> textInput() -> label($config['WEB_FILE_TYPE']['title']); ?>
-
-            <!-- 首页标题 -->
-            <?php echo $form -> field($model , 'WEB_SITE_INDEX_TITLE') -> textInput() -> label($config['WEB_SITE_INDEX_TITLE']['title']); ?>
-
 
             <!-- META关键词 -->
             <?php echo $form -> field($model, 'WEB_META_KEY', [

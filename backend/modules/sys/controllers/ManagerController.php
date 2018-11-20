@@ -5,6 +5,7 @@ use Yii;
 use common\models\backend\Manager;
 use common\models\backend\AuthAssignment;
 use common\models\backend\AuthItem;
+use oframe\basics\backend\modules\sys\models\Search;
 
 class ManagerController extends \backend\controllers\BController
 {
@@ -15,10 +16,27 @@ class ManagerController extends \backend\controllers\BController
      */
     public function actionIndex()
     {
-        $models = Manager::find() -> with(['roleName']) -> asArray() -> all();
+        $roles = AuthItem::getRoles();
+
+        $search = new Search;
+
+        $get = Yii::$app -> request -> get();
+
+        $search -> load($get);
+
+        $models = Manager::find()
+                -> andFilterWhere([ 'mobile_phone' => $search -> mobile_phone,
+                                    'email' => $search -> email,
+                                    'role_id' => $search -> role_id])
+                -> andFilterWhere(['like', 'username', $search -> username])
+                -> with(['roleName']) 
+                -> asArray()
+                -> all();
 
         return $this -> render('index', [
-            'models' => $models
+            'models' => $models,
+            'roles' => $roles,
+            'search' => $search,
         ]);
     }
 
@@ -31,10 +49,40 @@ class ManagerController extends \backend\controllers\BController
 
         $roles = AuthItem::getRoles();
 
+        if (Yii::$app -> request -> isPost) {
+
+            $old_hash_password = $model -> password_hash;
+
+            $model -> load(Yii::$app -> request -> post());
+
+            if (!$model) return $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['index']), 'error');
+
+            if ($old_hash_password != $model -> password_hash) $model -> setPassword($model -> password_hash);       // hash 密码
+
+            AuthAssignment::add($model -> role_id, $model -> id); // 分配角色
+
+            return $model -> save() ?
+                    $this -> message('保存成功', $this -> redirect(['index'])) :
+                    $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['index']), 'error');
+
+        }
+
         return $this -> render('edit', [
             'model' => $model,
             'roles' => $roles
         ]);
+    }
+
+    /**
+     * 删除用户
+     */
+    public function actionDelete($id)
+    {
+        $model = $this -> findModel($id);
+
+        return $model -> delete() ?
+                $this -> message('删除成功', $this -> redirect(['index'])) :
+                $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['index']), 'error');
     }
 
     

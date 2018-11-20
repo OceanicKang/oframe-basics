@@ -35,7 +35,9 @@ class Manager extends \common\models\base\User
 
             [['username', 'email', 'password_reset_token'], 'unique'],
 
-            ['head_img', 'default', 'value' => '/resource/common/img/head_img.png']
+            ['head_img', 'default', 'value' => '/resource/common/img/head_img.png'],
+
+            [['nickname', 'auth_key'], 'default', 'value' => ''],
 
         ];
     }
@@ -48,7 +50,7 @@ class Manager extends \common\models\base\User
         return [
             'id'            => 'ID',
             'role_id'       => '角色',
-            'username'      => '用户名',
+            'username'      => '登录名',
             'nickname'      => '昵称',
             'auth_key'      => 'Auth Key',
             'password_hash' => '密码',

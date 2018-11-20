@@ -1,6 +1,6 @@
 <?php foreach ($models['child'] as $model): ?>
 
-    <tr class="<?php echo $pid ?>" style="<?php echo 2 == $model['level'] ? 'background-color: #f2f2f2;' : ''; ?>" level="<?php echo $model['level'] ?>">
+    <tr class="<?php echo $pid ?>" style="<?php echo 2 == $model['level'] && $model['child'] ? 'background-color: #f2f2f2;' : ''; ?>" level="<?php echo $model['level'] ?>">
 
         <td class="of-txt-center">
             <?php if ($model['child']): ?>

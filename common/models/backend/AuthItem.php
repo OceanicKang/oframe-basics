@@ -101,53 +101,6 @@ abstract class AuthItem extends ActiveRecord
     }
 
     /**
-     * 分配权限
-     */
-    public static function setAccreditAssign($parent, $children)
-    {
-        $data = [];
-
-        if ($children) {
-
-            foreach ($children as $k => $child) {
-
-                $data[$k]['parent'] = $parent;
-
-                $data[$k]['child'] = $child;
-
-            }
-            
-        }
-
-        $transaction = Yii::$app -> db -> beginTransaction();
-
-        try {
-
-            $result = AuthItemChild::deleteAll('parent = :parent', [':parent' => $parent]);
-
-            if ($result !== 0 && !$result) throw new \Exception('权限预处理失败');
-
-            $result = $data ? Yii::$app -> db -> createCommand() -> batchInsert(AuthItemChild::tableName(), [
-                                    'parent',
-                                    'child',
-                                ], $data) -> execute() : true;
-
-            if (!$result) throw new \Exception('分配权限失败');
-
-            $transaction -> commit();
-
-        } catch (\Exception $e) {
-
-            $transaction -> rollback();
-
-            return $e -> getMessage();
-
-        }
-
-        return true;
-    }
-
-    /**
      * 获取权限路由
      */
     public static function getAuths()

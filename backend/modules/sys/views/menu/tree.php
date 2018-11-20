@@ -1,6 +1,6 @@
 <?php foreach ($menus as $k => $menu): ?>
 
-    <tr class="<?php echo $pid ?>" style="<?php echo 1 == $menu['level'] ? 'background-color: #f2f2f2;' : ''; ?>">
+    <tr class="<?php echo $pid ?>" style="<?php echo 1 == $menu['level'] && $menu['child'] ? 'background-color: #f2f2f2;' : ''; ?>">
 
         <td class="of-txt-center">
             <?php if ($menu['child']): ?>

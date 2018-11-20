@@ -1,7 +1,7 @@
 
 <?php foreach ($configs['child'] as $config): ?>
 
-<tr class="<?php echo $pid ?>" style="<?php echo 2 == $config['level'] ? 'background-color: #f2f2f2;' : ''; ?>">
+<tr class="<?php echo $pid ?>" style="<?php echo 2 == $config['level'] && $config['child'] ? 'background-color: #f2f2f2;' : ''; ?>">
 
     <th class="of-width-30 of-txt-center">
         

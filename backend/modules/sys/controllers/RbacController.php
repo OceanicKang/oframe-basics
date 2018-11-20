@@ -194,32 +194,6 @@ class RbacController extends \backend\controllers\BController
         return $this -> message('未找到该角色', $this -> redirect(['role']), 'error');
     }
 
-    // 给用户分配角色
-    public function actionRoleAssign($user_id, $username = '')
-    {
-
-        $model = AuthAssignment::findOne(['user_id' => $user_id]);
-
-        !$model && $model = new AuthAssignment;
-
-        if (Yii::$app -> request -> isPost) {
-
-            $model -> user_id = $user_id;
-
-            return $model -> load(Yii::$app -> request -> post()) && $model -> save() ?
-                    $this -> message('分配成功', $this -> redirect(['/sys/manager/index'])) :
-                    $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['/sys/manager/index']), 'error');
-
-        }
-
-        return $this -> render('role-assign', [
-            'model' => $model,
-            'username' => $username
-        ]);
-
-    }
-    
-
     // 规则 rule =========================================
     
     /**

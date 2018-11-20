@@ -23,7 +23,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
 
     <!-- 登录名 -->
     <?php echo $form -> field($model , 'username') -> textInput([
-                    'placeholder' => '请填写用户名',
+                    'placeholder' => '请填写登录名',
                     'lay-verify' => 'required',
                 ]) -> label('用户名'); ?>
 
@@ -43,7 +43,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
                     'placeholder' => '请填写邮箱',
                 ]) -> label('邮箱'); ?>
 
-    <!-- 配置类型 -->
+    <!-- 角色 -->
     <?php echo $form -> field($model, 'role_id') -> dropDownList($roles, [
                     'prompt' => '请分配角色',
                     'lay-verify' => 'required',
