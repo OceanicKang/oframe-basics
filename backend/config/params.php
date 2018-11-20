@@ -55,11 +55,12 @@ return [
 
     /** ------ 默认禁止删除的菜单路由 ------ **/
     'defaultNotDelMenuUrl' => [
-
-        'SYS',
+        // 侧边
+        'Setting',
         '/sys/setting/web',
         '/sys/setting/email',
 
+        // 系统
         'RBAC',
         '/sys/manager/index',
         '/sys/rbac/role',
@@ -71,38 +72,44 @@ return [
     /** ------ 默认禁止删除的权限路由 ------ **/
     'defaultNotDelRbacUrl' => [
 
-        'sys-extend',
-        'sys-extend-menu',
-        '/sys/menu/side-menu',
-        '/sys/menu/sys-menu',
-        '/sys/menu/edit',
-        '/sys/menu/ajax-update',
-        '/sys/menu/recycle',
-        '/sys/menu/restore',
-        '/sys/menu/status-del',
-        '/sys/menu/delete',
-        'sys-extend-config',
-        '/sys/config/index',
-        '/sys/config/edit',
-        '/sys/config/ajax-update',
-        '/sys/config/recycle',
-        '/sys/config/restore',
-        '/sys/config/status-del',
-        '/sys/config/delete',
+        'menu-setting',              // 菜单 -- 系统设置
+        '/sys/setting/web',          // 网站设置列表
+        '/sys/setting/email',        // 邮件服务列表
+        '/sys/setting/update',       // 更新配置
+        '/sys/setting/send-email',   // 发送测试邮件
 
-        'sys-rbac',
-        'sys-rbac-accredit',
-        '/sys/rbac/accredit',
-        '/sys/rbac/accredit-edit',
-        '/sys/rbac/accredit-del',
-        '/sys/rbac/accredit-assign',
-        'sys-rbac-role',
-        '/sys/rbac/role',
-        '/sys/rbac/role-edit',
-        '/sys/rbac/role-del',
-        'sys-rbac-rule',
-        '/sys/rbac/rule',
-        '/sys/rbac/ajax-update',
+        'sys-extend',                // 系统 -- 扩展
+        'sys-extend-menu',           // 菜单管理
+        '/sys/menu/side-menu',       // 侧边菜单列表
+        '/sys/menu/sys-menu',        // 系统菜单列表
+        '/sys/menu/edit',            // 编辑|新增
+        '/sys/menu/ajax-update',     // 开启|关闭|排序
+        '/sys/menu/recycle',         // 回收站
+        '/sys/menu/restore',         // 回收站还原
+        '/sys/menu/status-del',      // 状态删除
+        '/sys/menu/delete',          // 彻底删除
+        'sys-extend-config',         // 配置权限
+        '/sys/config/index',         // 配置列表
+        '/sys/config/edit',          // 编辑|新增
+        '/sys/config/ajax-update',   // 开启|关闭|排序
+        '/sys/config/recycle',       // 回收站
+        '/sys/config/restore',       // 回收站还原
+        '/sys/config/status-del',    // 状态删除
+        '/sys/config/delete',        // 彻底删除
+
+        'sys-rbac',                  // 系统 -- 用户权限
+        'sys-rbac-accredit',         // 权限管理
+        '/sys/rbac/accredit',        // 权限列表
+        '/sys/rbac/accredit-edit',   // 编辑|新增
+        '/sys/rbac/accredit-del',    // 删除权限
+        '/sys/rbac/accredit-assign', // 分配权限
+        'sys-rbac-role',             // 角色管理
+        '/sys/rbac/role',            // 角色列表
+        '/sys/rbac/role-edit',       // 编辑|新增
+        '/sys/rbac/role-del',        // 删除角色
+        'sys-rbac-rule',             // 规则管理
+        '/sys/rbac/rule',            // 规则列表
+        '/sys/rbac/ajax-update',     // 开启|关闭|排序    
 
 
     ],
