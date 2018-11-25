@@ -39,7 +39,7 @@ class BaseController extends \yii\web\Controller
     /**
      * 公共下载方式
      */
-    public function download($fileName, $path)
+    public function download($path)
     {
         ob_end_clean();
 

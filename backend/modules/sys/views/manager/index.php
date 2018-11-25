@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 
 $this -> title = '后台用户管理';
 $this -> params['breadcrumbs'][] = ['label' => '系统管理', 'url' => Url::to(['main/setting'])];
@@ -174,11 +175,24 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                             </tbody>
                         </table>
+
                     </div>
-                    
+
                 </div>
 
-            </div>  
+            </div>
+
+
+            <?= LinkPager::widget([
+                'pagination'        => $pages,
+                'maxButtonCount'    => 5,
+                'firstPageLabel'    => '首页',
+                'lastPageLabel'     => '尾页',
+                'nextPageLabel'     => '下一页',
+                'prevPageLabel'     => "上一页",
+                'activeLinkOptions' => ['style' => 'background-color:#1E9FFF;'],
+            ]);?>
+
 
         </div>
     </div>

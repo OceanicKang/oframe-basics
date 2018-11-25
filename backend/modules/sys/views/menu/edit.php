@@ -46,7 +46,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
                                         <div class="layui-input-block">
                                             {input}
                                         </div>
-                                        <div class="layui-form-mid layui-word-aux of-txt-right" style="width: 100%;">图标库查看：<a href="https://oceanickang.github.io/OceanicFrame/#/develop/system/icon" target="_blank">https://oceanickang.github.io/OceanicFrame/#/develop/system/icon </a></div>
+                                        <div class="layui-form-mid layui-word-aux of-txt-right" style="width: 100%;">图标库查看：<a href="https://oceanickang.github.io/OceanicFrame/#/develop/widgets/icon" target="_blank">https://oceanickang.github.io/OceanicFrame/#/develop/widgets/icon </a></div>
                                       </div>'
                 ]) -> textInput([
                     'placeholder' => '如：zmdi zmdi-menu',

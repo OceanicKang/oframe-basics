@@ -6,6 +6,7 @@ use common\models\backend\Manager;
 use common\models\backend\AuthAssignment;
 use common\models\backend\AuthItem;
 use oframe\basics\backend\modules\sys\models\Search;
+use yii\data\Pagination;
 
 class ManagerController extends \backend\controllers\BController
 {
@@ -24,17 +25,24 @@ class ManagerController extends \backend\controllers\BController
 
         $search -> load($get);
 
-        $models = Manager::find()
+        $data = Manager::find()
                 -> andFilterWhere([ 'mobile_phone' => $search -> mobile_phone,
                                     'email' => $search -> email,
                                     'role_id' => $search -> role_id])
                 -> andFilterWhere(['like', 'username', $search -> username])
-                -> with(['roleName']) 
+                -> with(['roleName']);
+
+        $pages = new Pagination(['totalCount' => $data -> count(), 'pageSize' => $this -> _pageSize]);
+
+        $models = $data
+                -> offset($pages -> offset)
+                -> limit($pages -> limit)
                 -> asArray()
                 -> all();
 
         return $this -> render('index', [
             'models' => $models,
+            'pages' => $pages,
             'roles' => $roles,
             'search' => $search,
         ]);
