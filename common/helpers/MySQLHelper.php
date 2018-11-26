@@ -160,7 +160,16 @@ class MySQLHelper
                             // 组合INSERT的VALUE
                             foreach ($tableDateRow as $k => $v) {
 
-                                $tableDateRow[$k] = ($v || is_numeric($v)) ? "'" . addslashes($v) . "'" : 'NULL'; // 别忘了转义  value为空则'NULL'  否则为 'value'
+                                // 别忘了转义  value为空则空字符''  否则为 'value'
+                                if (is_null($v)) {
+
+                                    $tableDateRow[$k] = 'NULL';
+
+                                } else {
+
+                                    $tableDateRow[$k] = ($v || is_numeric($v)) ? "'" . addslashes($v) . "'" : "''"; 
+                                    
+                                }
 
                             }
 
@@ -216,6 +225,8 @@ class MySQLHelper
      */
     public function recover($fileName) {
 
+        mysqli_autocommit($this -> con, false); // 设置为非自动提交——事务处理
+
         $this -> getFile($fileName);
 
         if (!empty($this -> content)) {
@@ -244,7 +255,11 @@ class MySQLHelper
 
                         }
 
+                        mysqli_commit($this -> con); // 全部成功，提交执行结果
+
                     } else {
+
+                        mysqli_rollback($this -> con); // 回滚并取消执行结果
 
                         $this -> throwException('备份文件被损坏 ' . mysqli_error());
 
@@ -256,9 +271,13 @@ class MySQLHelper
 
         } else {
 
+            mysqli_rollback($this -> con); // 回滚并取消执行结果
+
             $this -> throwException('无法读取备份文件');
 
         }
+
+        mysqli_autocommit($this -> con, true); // 开启自动提交
 
         return true;
     }
@@ -742,6 +761,9 @@ class MySQLHelper
      */
     private function throwException($error)
     {
+        // 抛出异常会停止继续执行，可能有些地方用到了事务处理，关闭了自动提交
+        mysqli_autocommit($this -> con, true);
+
         throw new \Exception($error);
     }
 

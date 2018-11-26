@@ -52,15 +52,23 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                         <td><?php echo date('Y-m-d H:i:s', $file['time']); ?></td>
                         <td>
 
-                            <a  href=""
-                                class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit" title="优化">
-                                <i class="zmdi zmdi-code-setting zmdi-hc-fw"></i>优化
+                            <a  href="<?php echo Url::to(['recover', 'fileName' => $file['name']]) ?>"
+                                class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit" title="还原数据库"
+                                onclick="message(this);return false;">
+                                <i class="zmdi zmdi-refresh zmdi-hc-fw"></i>还原
                             </a>
 
-                            <a  href=""
+                            <a  href="<?php echo Url::to(['download', 'fileName' => $file['name']]); ?>"
                                 class="layui-btn layui-btn-primary layui-btn-xs"
-                                title="修复">
-                                <i class="zmdi zmdi-wrench zmdi-hc-fw"></i>修复
+                                title="下载">
+                                <i class="zmdi zmdi-download zmdi-hc-fw"></i>下载
+                            </a>
+
+                            <a  href="<?php echo Url::to(['delete', 'fileName' => $file['name']]); ?>"
+                                class="layui-btn layui-btn-danger layui-btn-xs"
+                                title="删除"
+                                onclick="delDanger(this);return false;">
+                                <i class="layui-icon layui-icon-delete"></i>删除
                             </a>
 
                         </td>
@@ -76,6 +84,24 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
     </div>
 
 </div>
+
+<script type="text/javascript">
+    /**
+     * 提示框
+     */
+    function message(obj) {
+
+        var self = $(obj);
+
+        layer.confirm('是否' + self.attr('title') + '？', function() {
+
+            window.location.href = self.attr('href');
+
+            layer.msg('正在还原，请稍后', {icon: 16});
+
+        });
+    }
+</script>
 
 
 

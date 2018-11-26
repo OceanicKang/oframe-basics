@@ -67,6 +67,9 @@ return [
         '/sys/rbac/accredit',
         '/sys/rbac/rule',
 
+        'TOOLS',
+        '/sys/data/index',
+
     ],
 
     /** ------ 默认禁止删除的权限路由 ------ **/
@@ -98,20 +101,30 @@ return [
         '/sys/config/delete',        // 彻底删除
 
         'sys-rbac',                  // 系统 -- 用户权限
+        'sys-rbac-manager',          // 后台用户
+        'sys-rbac-role',             // 角色管理
+        '/sys/rbac/role',            // 角色列表
+        '/sys/rbac/role-edit',       // 编辑|新增
+        '/sys/rbac/role-del',        // 删除角色
         'sys-rbac-accredit',         // 权限管理
         '/sys/rbac/accredit',        // 权限列表
         '/sys/rbac/accredit-edit',   // 编辑|新增
         '/sys/rbac/accredit-del',    // 删除权限
         '/sys/rbac/accredit-assign', // 分配权限
-        'sys-rbac-role',             // 角色管理
-        '/sys/rbac/role',            // 角色列表
-        '/sys/rbac/role-edit',       // 编辑|新增
-        '/sys/rbac/role-del',        // 删除角色
         'sys-rbac-rule',             // 规则管理
         '/sys/rbac/rule',            // 规则列表
         '/sys/rbac/ajax-update',     // 开启|关闭|排序    
 
-
+        'sys-tools',                 // 系统 -- 系统工具
+        'sys-tools-database',        // 数据库管理
+        '/sys/data/index',           // 数据列表
+        '/sys/data/backup-files',    // 备份文件列表
+        '/sys/data/optimize',        // 优化数据表
+        '/sys/data/repair',          // 修复数据表
+        '/sys/data/backup',          // 备份数据库
+        '/sys/data/recover',         // 还原数据库
+        '/sys/data/download',        // 下载备份文件
+        '/sys/data/delete',          // 删除备份文件
     ],
 
     /** ------ 默认禁止删除的角色名称 ------ **/

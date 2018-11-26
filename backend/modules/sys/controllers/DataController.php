@@ -63,7 +63,7 @@ class DataController extends \backend\controllers\BController
 
         foreach ($fileArr as $key => $value) {
 
-            if ($k > 1) {
+            if ($key > 1) {
 
                 // 获取文件创建时间
                 $fileTime = filemtime($path . $value);
@@ -96,6 +96,133 @@ class DataController extends \backend\controllers\BController
         return $this -> render('backup-files', [
             'files' => $list
         ]);
+    }
+
+    /**
+     * 优化表
+     *
+     * @return string 
+     */
+    public function actionOptimize($table = '')
+    {
+        try {
+
+            $this -> sql -> optimize($table);
+
+            $this -> code = AjaxHelper::AJAX_SUCCESS;
+
+            $this -> message = $table ? ( is_array($table) ? '数据表优化成功' : "数据表 `{$table}` 优化成功" ) : '优化成功';
+
+        } catch (\Exception $e) {
+
+            $this -> message = $e -> getMessage();
+
+        }
+
+        $response = Yii::$app -> response;
+
+        $response -> data = AjaxHelper::formatData($this -> code, $this -> message);
+
+        $response -> send();
+    }
+
+    /**
+     * 修复表
+     */
+    public function actionRepair($table = '')
+    {
+        try {
+
+            $this -> sql -> repair($table);
+
+            $this -> code = AjaxHelper::AJAX_SUCCESS;
+
+            $this -> message = $table ? ( is_array($table) ? '数据表修复成功' : "数据表 `{$table}` 修复成功" ) : '修复成功';
+
+        } catch (\Exception $e) {
+
+            $this -> message = $e -> getMessage();
+
+        }
+
+        $response = Yii::$app -> response;
+
+        $response -> data = AjaxHelper::formatData($this -> code, $this -> message);
+
+        $response -> send();
+
+    }
+
+    /**
+     * 备份数据库
+     */
+    public function actionBackup()
+    {
+
+        try {
+
+            $this -> sql -> backup();
+
+            $this -> code = AjaxHelper::AJAX_SUCCESS;
+
+            $this -> message = '备份成功';
+
+        } catch (\Exception $e) {
+
+            $this -> message = $e -> getMessage();
+
+        }
+
+        $response = Yii::$app -> response;
+
+        $response -> data = AjaxHelper::formatData($this -> code, $this -> message);
+
+        $response -> send();
+
+    }
+
+    /**
+     * 删除备份文件
+     */
+    public function actionDelete($fileName)
+    {
+
+        $result = unlink($this -> sql -> config['path'] . $fileName);
+
+        return $result ?
+                $this -> message('删除成功', $this -> redirect(['backup-files'])) :
+                $this -> message('删除失败', $this -> redirect(['backup-files']), 'error');
+
+    }
+
+    /**
+     * 还原数据库
+     */
+    public function actionRecover($fileName)
+    {
+
+        try {
+
+            $this -> sql -> recover($fileName);
+
+        } catch (\Exception $e) {
+
+            return $this -> message($e -> getMessage(), $this -> redirect(['backup-files']), 'error');
+
+        }
+
+        return $this -> message('还原成功', $this -> redirect(['index']));
+
+    }
+
+    /**
+     * 下载
+     */
+    public function actionDownload($fileName)
+    {
+
+        $this -> download($this -> sql -> config['path'] . $fileName);
+
     }
 
     /**
