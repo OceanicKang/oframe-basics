@@ -3,10 +3,18 @@ return [
     'adminEmail' => 'admin@example.com',
 
     'Author_Info' => [
-        'name' => 'OceanicKang',
-        'home_url' => 'https://blog.oceanickang.com',
-        'docs_url' => 'https://oceanickang.github.io/OceanicFrame',
+        'system_name' => 'OceanicFrame 框架',
+        'system_version' => 'V1.0.0',
+        'author_name' => 'OceanicKang',
+        'home_url' => 'www.oceanickang.com',
+        'docs_url' => 'oceanickang.github.io/OceanicFrame',
         'demo_url' => '#',
+        'gitee_url' => 'gitee.com/oceanickang/OceanicFrame',
+        'github_url' => 'github.com/OceanicKang/OceanicFrame',
+        'qq_group' => [
+            'name' => '850238761',
+            'url' => 'shang.qq.com/wpa/qunwpa?idkey=d3b7d66814063b2741d53b8f26ea8c4c17410b173b87353d2d0794833f247ec5'
+        ],
     ],
 
     /** ------ 配置管理类型 ------ **/
