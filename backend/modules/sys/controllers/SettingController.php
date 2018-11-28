@@ -5,6 +5,7 @@ use Yii;
 use oframe\basics\common\models\common\Config;
 use common\enums\StatusEnum;
 use oframe\basics\backend\modules\sys\models\Setting;
+use oframe\basics\common\helpers\SysArrayHelper;
 
 /**
  * 系统设置
@@ -58,6 +59,24 @@ class SettingController extends \backend\controllers\BController
         return $this -> render('email', [
             'model' => new Setting,
             'config' => $this -> config
+        ]);
+    }
+
+    /**
+     * 模板
+     */
+    public function actionSetConfig()
+    {
+        $configs = Config::find()
+                -> where(['status' => StatusEnum::STATUS_ON])
+                -> andWhere(['NOT', ['name' => '']])
+                -> asArray()
+                -> all();
+
+        $configs = SysArrayHelper::itemsMerge($configs);
+
+        return $this -> render('set-config', [
+            'configs' => $configs
         ]);
     }
 
