@@ -27,7 +27,7 @@ return [
         'textarea'      => "文本域",
         'dropDownList'  => "下拉文本框",
         'radioList'     => "单选按钮",
-        'editor'        => "编辑器",
+        'statusRadio'   => "状态按钮",
         'image'         => "图片上传",
         'images'        => "多图上传",
         'file'          => "文件上传",
@@ -64,9 +64,7 @@ return [
     /** ------ 默认禁止删除的菜单路由 ------ **/
     'defaultNotDelMenuUrl' => [
         // 侧边
-        'Setting',
-        '/sys/setting/web',
-        '/sys/setting/email',
+        '/sys/setting/config',
 
         // 系统
         'RBAC',
@@ -84,8 +82,7 @@ return [
     'defaultNotDelRbacUrl' => [
 
         'menu-setting',              // 菜单 -- 系统设置
-        '/sys/setting/web',          // 网站设置列表
-        '/sys/setting/email',        // 邮件服务列表
+        '/sys/setting/config',       // 网站配置信息
         '/sys/setting/update',       // 更新配置
         '/sys/setting/send-email',   // 发送测试邮件
 

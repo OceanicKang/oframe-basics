@@ -13,69 +13,20 @@ use oframe\basics\common\helpers\SysArrayHelper;
 class SettingController extends \backend\controllers\BController
 {
     /**
-     * 所有config
-     * @var array
+     * 网站配置信息界面
      */
-    public $config = [];
-
-    /**
-     * 初始化
-     * @Author OceanicKang 2018-11-05
-     * @return [type]      [description]
-     */
-    public function init()
-    {
-        $this -> config = Config::find()
-                        -> where(['status' => StatusEnum::STATUS_ON])
-                        -> andWhere(['NOT', ['name' => '']])
-                        -> asArray()
-                        -> all();
-
-        $this -> config = array_column($this -> config, null, 'name');
-        
-        parent::init();
-    }
-
-    /**
-     * 网站设置
-     * @Author OceanicKang 2018-11-05
-     * @return string      [description]
-     */
-    public function actionWeb()
-    {
-        return $this -> render('web', [
-            'model' => new Setting,
-            'config' => $this -> config
-        ]);
-    }
-
-    /**
-     * 邮件服务
-     * @Author OceanicKang 2018-11-05
-     * @return string      [description]
-     */
-    public function actionEmail()
-    {
-        return $this -> render('email', [
-            'model' => new Setting,
-            'config' => $this -> config
-        ]);
-    }
-
-    /**
-     * 模板
-     */
-    public function actionSetConfig()
+    public function actionConfig()
     {
         $configs = Config::find()
                 -> where(['status' => StatusEnum::STATUS_ON])
                 -> andWhere(['NOT', ['name' => '']])
+                -> orderBy('sort asc')
                 -> asArray()
                 -> all();
 
         $configs = SysArrayHelper::itemsMerge($configs);
 
-        return $this -> render('set-config', [
+        return $this -> render('config', [
             'configs' => $configs
         ]);
     }
@@ -86,11 +37,11 @@ class SettingController extends \backend\controllers\BController
      * @param  string      $action    [description]
      * @return string                 [description]
      */
-    public function actionUpdate($action = 'web')
+    public function actionUpdate($anchor = '')
     {
         return Yii::$app -> request -> isPost && Setting::updateValues(Yii::$app -> request -> post()) ? 
-                    $this -> message('保存成功', $this -> redirect([$action])) :
-                    $this -> message('保存失败', $this -> redirect([$action]), 'error');
+                    $this -> message('保存成功', $this -> redirect(['config', '#' => '/#layid=' . $anchor])) :
+                    $this -> message('保存失败', $this -> redirect(['config', '#' => '/#layid=' . $anchor]), 'error');
     }
 
     /**

@@ -141,8 +141,8 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                 },
                 error: function (str) {
-
-                    layer.msg(str, {icon: 2});
+                    
+                    layer.msg(str.responseText, {icon: 2});
 
                 }
 

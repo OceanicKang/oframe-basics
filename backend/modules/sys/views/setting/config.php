@@ -14,20 +14,20 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                 <ul class="layui-tab-title">
 
-                    <?php foreach ($configs as $key =>  $config): ?>
-                        <li class="<?php echo 0 == $key ? 'layui-this' : '' ?>" lay-id="<?php echo $config['id'] ?>"><?php echo $config['title'] ?></li>
+                    <?php foreach ($configs as $key =>  $Level_1): ?>
+                        <li class="<?php echo 0 == $key ? 'layui-this' : '' ?>" lay-id="<?php echo $Level_1['id'] ?>"><?php echo $Level_1['title'] ?></li>
                     <?php endforeach; ?>
 
                 </ul>
 
                 <div class="layui-tab-content">
 
-                    <?php foreach ($configs as $key => $config): ?>
+                    <?php foreach ($configs as $key => $Level_1): ?>
                         <div class="layui-tab-item <?php echo 0 == $key ? 'layui-show' : '' ?>">
 
                             <?php echo $this -> render('tree', [
-                                                    'configs' => $config['child'],
-                                                    'anchor'  => $config['id']
+                                                    'Level_2' => $Level_1['child'],
+                                                    'anchor'  => $Level_1['id']
                                                 ]) ?>
                             
                         </div>
@@ -39,3 +39,16 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
     </div>
 
 </div>
+
+<script type="text/javascript">
+    
+$('.layui-form-label').click(function () {
+
+    $('.of-ibox input').val($(this).attr('title'));
+
+    $('.of-ibox p span').text($(this).text());
+
+});
+
+</script>
+
