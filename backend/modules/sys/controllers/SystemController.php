@@ -25,6 +25,8 @@ class SystemController extends \backend\controllers\BController
 
         $disable_functions = $disable_functions ?: '未禁用';
 
+        $disable_functions = explode(',', $disable_functions);
+
         // 附件大小
         $attachment_size = SystemHelper::getDirSize(Yii::getAlias('@attachment'));
 

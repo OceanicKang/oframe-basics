@@ -2,9 +2,10 @@
 return [
     'adminEmail' => 'admin@example.com',
 
+    /** ------ 系统信息 ------ **/
     'Author_Info' => [
         'system_name' => 'OceanicFrame 框架',
-        'system_version' => 'V1.0.0',
+        'system_version' => 'V 1.0.0',
         'author_name' => 'OceanicKang',
         'home_url' => 'www.oceanickang.com',
         'docs_url' => 'oceanickang.github.io/OceanicFrame',
@@ -15,6 +16,17 @@ return [
             'name' => '850238761',
             'url' => 'shang.qq.com/wpa/qunwpa?idkey=d3b7d66814063b2741d53b8f26ea8c4c17410b173b87353d2d0794833f247ec5'
         ],
+    ],
+
+    /** ------ php 扩展 ------ **/
+    'extension_loaded' => [
+        'fileinfo',
+        'memcache',
+        'memcached',
+        'redis',
+        'swoole',
+        'mongodb',
+        'bz2',
     ],
 
     /** ------ 配置管理类型 ------ **/
