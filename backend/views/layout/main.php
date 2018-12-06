@@ -146,29 +146,6 @@ AppAsset::register($this);
 
             });
 
-            // // Ajax获取
-            // $.get(href, function (str, status) {
-
-            //     layer.close(ii);
-
-            //     layer.open({
-
-            //         type: 1,
-
-            //         area: ['600px', 'auto'],
-
-            //         maxmin: true,
-
-            //         shadeClose: true, //点击遮罩关闭层
-
-            //         title: title,
-
-            //         content: str //注意，如果str是object，那么需要字符拼接。
-
-            //     });
-
-            // });
-
             return false;
         });
 
