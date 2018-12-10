@@ -3,7 +3,7 @@ namespace oframe\basics\backend\modules\sys\controllers;
 
 use Yii;
 use oframe\basics\common\helpers\SystemHelper;
-use oframe\basics\common\components\ServerInfo;
+use oframe\basics\backend\components\ServerInfo;
 use oframe\basics\common\helpers\AjaxHelper;
 
 class SystemController extends \backend\controllers\BController
@@ -64,10 +64,6 @@ class SystemController extends \backend\controllers\BController
 
             $data['hard_disk'] = $server -> getHardDisk(); // 硬盘使用
 
-            // 网络情况 横坐标
-            $data['time_x'] = [];
-
-            for ($i = 20; $i > 0; $i--) $data['time_x'][] = time() - $i * $time_speed;
         }
 
         $data['loadavg'] = $server -> getLoadavg(); // 负载状态
@@ -76,6 +72,8 @@ class SystemController extends \backend\controllers\BController
 
         $data['cpu_use'] = $server -> getCpuUse(); // cpu 使用
 
+        $data['cpu_use_rate'] = 0;
+        
         $data['memory'] = $server -> getMemory(); // 内存信息
 
         $data['network'] = $server -> getNetwork(); // 网络情况
@@ -105,13 +103,6 @@ class SystemController extends \backend\controllers\BController
 
             $data['network']['all_out_speed'] = round(($data['network']['all_transmit'] - $oldServerInfo['network']['all_transmit']) / $time, 2);
 
-            // x 轴
-            $data['time_x'] = $oldServerInfo['time_x'];
-
-            array_push($data['time_x'], end($data['time_x']) + $time_speed);
-
-            array_shift($data['time_x']);
-
         }
 
         Yii::$app -> cache -> set('server:info', $data, 10);
@@ -128,9 +119,7 @@ class SystemController extends \backend\controllers\BController
                                             str_replace(',', '.',
                                                 Yii::$app -> formatter -> asShortSize($data['network']['all_transmit'], 2)));
 
-        $data['time_x'] = array_map(function ($time) {
-                              return date('H:i:s', $time);
-                          }, $data['time_x']);
+        $data['time'] = date('H:i:s', $data['time']);
 
         if (Yii::$app -> request -> isAjax) return AjaxHelper::formatData(200, '', $data);
 

@@ -1,8 +1,8 @@
 <?php
-namespace oframe\basics\common\components;
+namespace oframe\basics\backend\components;
 
-use oframe\basics\common\components\server\ServerInfoLinux;
-use oframe\basics\common\components\server\ServerInfoWindows;
+use oframe\basics\backend\components\server\ServerInfoLinux;
+use oframe\basics\backend\components\server\ServerInfoWindows;
 
 /**
  * Class ServerHelper

@@ -31,7 +31,7 @@ AppAsset::register($this);
 
 <script>
     layui.config({
-        base: '/resource/backend/' //静态资源所在路径
+        base: '/resources/backend/' //静态资源所在路径
     }).use(['table', 'form'], function () {
         var form = layui.form;
         form.render(); //更新全部

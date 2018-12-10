@@ -62,6 +62,7 @@ return [
         'WEB_META_KEY',
         'WEB_META_DESCRIBE',
         'WEB_COPY_RIGHT',
+        'WEB_DEFAULT_AVATAR',
 
         'SYS_EMAIL',
         'SYS_EMAIL_HOST',

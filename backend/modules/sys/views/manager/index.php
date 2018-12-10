@@ -134,7 +134,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                     </td>
                                     <td>
                                         <div class="layui-table-cell" align="center">
-                                            <img style="display: inline-block; width: auto; height: 100%;" src="<?php echo $model['head_img'] ?>">
+                                            <img style="display: inline-block; width: auto; height: 100%;" src="<?php echo $model['avatar'] ?>">
                                         </div>
                                     </td>
                                     <td>
@@ -158,7 +158,10 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                     
                                     <td align="center" class="layui-table-col-special" style="border-right: none;">
                                         <div class="layui-table-cell">
-                                            <a href="<?php echo Url::to(['edit', 'id' => $model['id']]) ?>" class="layui-btn layui-btn-normal layui-btn-xs model" lay-event="edit" title="编辑 - <?php echo $model['username'] ?>">
+                                            <a  href="<?php echo Url::to(['edit', 'id' => $model['id']]) ?>"
+                                                class="layui-btn layui-btn-normal layui-btn-xs model"
+                                                lay-event="edit"
+                                                title="编辑 - <?php echo $model['username'] ?>">
                                                 <i class="layui-icon layui-icon-edit"></i>编辑
                                             </a>
                                             <a  href="<?php echo Url::to(['delete', 'id' => $model['id']]) ?>"
@@ -167,6 +170,10 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                                 <?php echo in_array($model['id'], Yii::$app -> params['adminAccount']) ? '' : 'onclick="delDanger(this);return false;"'; ?>
                                                 >
                                                 <i class="layui-icon layui-icon-delete"></i>删除
+                                            </a>
+                                            <a  href="<?php echo Url::to(['detail', 'id' => $model['id']]) ?>"
+                                                class="layui-btn layui-btn-xs layui-btn-primary" >
+                                                用户信息
                                             </a>
                                         </div>
                                     </td>

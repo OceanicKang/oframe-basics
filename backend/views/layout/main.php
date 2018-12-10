@@ -56,7 +56,7 @@ AppAsset::register($this);
                         'links' => isset($this -> params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
         </div>
-
+        
         <?= Alert2::widget() ?>
 
         <div class="layui-layout layui-layout-admin">
@@ -71,7 +71,7 @@ AppAsset::register($this);
 
 <script>
     layui.config({
-        base: '/resource/backend/' //静态资源所在路径
+        base: '/resources/backend/' //静态资源所在路径
     }).extend({
         index: '/lib/index' //主入口模块
     }).use(['index', 'table', 'form', 'set'], function () {
@@ -79,7 +79,7 @@ AppAsset::register($this);
         ,admin = layui.admin
         ,element = layui.element
         ,form = layui.form
-        ,router = layui.router();;
+        ,router = layui.router();
 
         // 监控 状态 input
         form.on('switch(status)', function(data) {

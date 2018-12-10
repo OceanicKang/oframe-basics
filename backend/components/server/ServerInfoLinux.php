@@ -1,5 +1,5 @@
 <?php
-namespace oframe\basics\common\components\server;
+namespace oframe\basics\backend\components\server;
 
 /**
  * Class ServerInfoLinux

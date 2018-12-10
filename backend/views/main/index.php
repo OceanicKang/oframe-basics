@@ -69,9 +69,11 @@ AppAsset::register($this);
       
         <!-- 主体内容 -->
         <div class="layui-body" id="LAY_app_body">
+            
+            <img src="/resources/backend/layui/css/modules/layer/default/loading-0.gif" style="position: absolute;left: 45%;top: 40%;" />
 
             <div class="layadmin-tabsbody-item layui-show">
-
+                
                 <iframe src="<?php echo Url::to(['sys/main/index']) ?>" frameborder="0" class="layadmin-iframe"></iframe>
 
             </div>
@@ -89,7 +91,7 @@ AppAsset::register($this);
 
 <script>
     layui.config({
-        base: '/resource/backend/' //静态资源所在路径
+        base: '/resources/backend/' //静态资源所在路径
     }).extend({
         index: '/lib/index' //主入口模块
     }).use('index');

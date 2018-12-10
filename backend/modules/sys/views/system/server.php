@@ -264,11 +264,11 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
 <script type="text/javascript">
 
-    var time_x = <?php echo json_encode($data['time_x']); ?>;
+    var time_x = [0, '<?php echo $data['time'] ?>'];
 
-    var all_in_speed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, <?php echo $data['network']['all_in_speed'] ?>];
+    var all_in_speed = [0, '<?php echo $data['network']['all_in_speed'] ?>'];
 
-    var all_out_speed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, <?php echo $data['network']['all_out_speed'] ?>];
+    var all_out_speed = [0, '<?php echo $data['network']['all_out_speed'] ?>'];
 
     var dom = document.getElementById("NetWork");
 
@@ -376,9 +376,10 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                     $('#all_out_speed').text(data.network.all_out_speed + ' KB / S');
                     $('#all_receive').text(data.network.all_receive);
                     $('#all_transmit').text(data.network.all_transmit);
-                    time_x = data.time_x;
-                    all_in_speed.shift(); all_in_speed.push(data.network.all_in_speed);
-                    all_out_speed.shift(); all_out_speed.push(data.network.all_out_speed);
+                    if (time_x.length >= 15 && all_in_speed.length >= 15 && all_out_speed.length >= 15) {
+                        time_x.shift(); all_in_speed.shift();all_out_speed.shift();
+                    }
+                    time_x.push(data.time); all_in_speed.push(data.network.all_in_speed); all_out_speed.push(data.network.all_out_speed);
                     myChart.setOption(NetWorkOption(), true);
 
                     // 负载情况

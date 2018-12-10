@@ -27,7 +27,7 @@ class Manager extends \common\models\base\User
 
             [['status', 'append', 'updated', 'role_id'], 'integer'],
 
-            [['username', 'nickname', 'password_hash', 'password_reset_token', 'email', 'head_img'], 'string', 'max' => 255],
+            [['username', 'nickname', 'password_hash', 'password_reset_token', 'email', 'avatar'], 'string', 'max' => 255],
 
             ['mobile_phone', 'string', 'max' => 20],
 
@@ -35,7 +35,7 @@ class Manager extends \common\models\base\User
 
             [['username', 'email', 'password_reset_token'], 'unique'],
 
-            ['head_img', 'default', 'value' => '/resource/common/img/head_img.png'],
+            ['avatar', 'default', 'value' => Yii::$app -> config -> get('WEB_DEFAULT_AVATAR')],
 
             [['nickname', 'auth_key'], 'default', 'value' => ''],
 
@@ -55,7 +55,7 @@ class Manager extends \common\models\base\User
             'auth_key'      => 'Auth Key',
             'password_hash' => '密码',
             'password_reset_token' => '重置密码token',
-            'head_img'      => '头像',
+            'avatar'        => '头像',
             'email'         => '邮箱',
             'mobile_phone'  => '手机',
             'status'        => 'Status',
