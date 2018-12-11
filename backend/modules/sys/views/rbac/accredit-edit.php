@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-$this -> context -> layout = '@basics/backend/views/layout/model';
+$this -> context -> layout = '@basics/backend/views/layout/layer-modal';
 ?>
 
 <div id="lay-breadcrumbs" style="box-shadow: none;">

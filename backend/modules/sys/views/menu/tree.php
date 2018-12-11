@@ -22,7 +22,7 @@
                                                             'pid'     => $menu['id'],
                                                             'type'    => $menu['type'],
                                                             'level'   => $menu['level'] + 1 ]); ?>"
-                    class="layui-icon layui-icon-add-circle-fine model" title="添加子菜单"></a>
+                    class="layui-icon layui-icon-add-circle-fine layer-modal" title="添加子菜单"></a>
             <?php endif; ?>
         </td>
 
@@ -72,7 +72,7 @@
                                                             'pid'     => $menu['pid'],
                                                             'type'    => $menu['type'],
                                                             'level'   => $menu['level'] ]); ?>" 
-                    class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                    class="layui-btn layui-btn-primary layui-btn-sm layer-modal" title="编辑">
                     <i class="layui-icon layui-icon-edit"></i>
                 </a>
 

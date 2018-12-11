@@ -16,7 +16,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 
                 <div class="of-float-r">
                     
-                    <a class="layui-btn layui-btn-normal model" title="添加新角色" href="<?php echo Url::to(['role-edit', 'id' => 0]); ?>" >
+                    <a class="layui-btn layui-btn-normal layer-modal" title="添加新角色" href="<?php echo Url::to(['role-edit', 'id' => 0]); ?>" >
                         <i class="layui-icon layui-icon-add-circle-fine" style="margin-right: 5px !important;"></i> 添加新角色
                     </a>
 
@@ -73,7 +73,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                 <div class="layui-btn-group">
 
                                     <a  href="<?php echo Url::to(['role-edit', 'id' => $model['id']]); ?>" 
-                                        class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                                        class="layui-btn layui-btn-primary layui-btn-sm layer-modal" title="编辑">
                                         <i class="layui-icon layui-icon-edit"></i>
                                     </a>
 

@@ -20,7 +20,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 
-<div class="model-content" style="padding:20px;overflow: -webkit-paged-x;">
+<div class="layer-modal-content" style="padding:20px;overflow: -webkit-paged-x;">
 
     <?= $content ?>
 

@@ -64,7 +64,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
         <div class="layui-card-body">
 
             <div style="padding-bottom: 10px;">
-                <button href="<?php echo Url::to(['edit', 'id' => 0]) ?>" class="layui-btn layuiadmin-btn-admin model" data-type="add" title="添加用户"> 添加 </button>
+                <button href="<?php echo Url::to(['edit', 'id' => 0]) ?>" class="layui-btn layuiadmin-btn-admin layer-modal" data-type="add" title="添加用户"> 添加 </button>
             </div>
 
             <style type="text/css">
@@ -159,7 +159,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                     <td align="center" class="layui-table-col-special" style="border-right: none;">
                                         <div class="layui-table-cell">
                                             <a  href="<?php echo Url::to(['edit', 'id' => $model['id']]) ?>"
-                                                class="layui-btn layui-btn-normal layui-btn-xs model"
+                                                class="layui-btn layui-btn-normal layui-btn-xs layer-modal"
                                                 lay-event="edit"
                                                 title="编辑 - <?php echo $model['username'] ?>">
                                                 <i class="layui-icon layui-icon-edit"></i>编辑

@@ -15,7 +15,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
             <div class="layui-btn-container">
 
                 <div class="of-float-r">
-                    <a class="layui-btn layui-btn-normal model" title="添加新模块" href="<?php echo Url::to(['edit', 
+                    <a class="layui-btn layui-btn-normal layer-modal" title="添加新模块" href="<?php echo Url::to(['edit', 
                                                                                                             'id' => 0,
                                                                                                             'pid' => 0,
                                                                                                             'level' => 1,
@@ -23,7 +23,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                                                                                             'p_title' => '无']) ?>">
                         <i class="layui-icon layui-icon-add-circle-fine" style="margin-right: 5px !important;"></i>添加新模块
                     </a>
-                    <a class="layui-btn layui-btn-primary model" title="回收站" href="<?php echo Url::to(['recycle']) ?>">
+                    <a class="layui-btn layui-btn-primary layer-modal" title="回收站" href="<?php echo Url::to(['recycle']) ?>">
                         <i class="ali-icon ali-icon-dustbin" style="margin-right: 5px;"></i>回收站
                     </a>
                 </div>
@@ -86,7 +86,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                                                                         'p_name'  => $config['name'],
                                                                                         'p_title' => $config['title'],
                                                                                         'anchor'  => $config['id']]); ?>"
-                                                class="layui-icon layui-icon-add-circle-fine model" title="添加子配置"></a>
+                                                class="layui-icon layui-icon-add-circle-fine layer-modal" title="添加子配置"></a>
 
                                         </th>
                                         <th class="of-width-20 of-txt-center"><?php echo $config['level']; ?></th>
@@ -118,7 +118,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                                                                             'p_name'  => '无',
                                                                                             'p_title' => '无',
                                                                                             'anchor'  => $config['id']]); ?>" 
-                                                    class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                                                    class="layui-btn layui-btn-primary layui-btn-sm layer-modal" title="编辑">
                                                     <i class="layui-icon layui-icon-edit"></i>
                                                 </a>
 

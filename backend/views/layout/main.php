@@ -35,7 +35,7 @@ AppAsset::register($this);
     
 <?php $this->beginBody() ?>
 
-<div class="layui-fluid layui-anim layui-anim-upbit" data-anim="layui-anim-upbit" style="padding-bottom: 100px;">
+<div class="layui-fluid layui-anim layui-anim-upbit" data-anim="layui-anim-upbit" style="margin-bottom: 50px;min-height: 100%;">
     <div class="layui-row layui-col-space15">
 
 
@@ -87,8 +87,8 @@ AppAsset::register($this);
             rfStatus(data.elem, id);
         });
         
-        //弹出一个 model 层
-        $('.model').on('click', function () {
+        //弹出一个 layer-modal 层
+        $('.layer-modal').on('click', function () {
 
             var self = this;
 

@@ -400,6 +400,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                     // 内存使用率
                     if (data.memory.used_rate >= 90) { classText = 'layui-bg-red'; }
                     else if (data.memory.used_rate >= 50) { classText = 'layui-bg-orange'; }
+                    else classText = '';
                     $('#memory_used').text('（ ' + (data.memory.used / 1024).toFixed(0) + 'MB / ' + (data.memory.total / 1024).toFixed(0) + 'MB ）内存使用率');
                     $('#memory_used_rate > span').text(data.memory.used_rate + '%');
                     $('#memory_used_rate').removeClass('layui-bg-red layui-bg-orange')
@@ -410,15 +411,17 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                     // CPU 使用率
                     if (data.cpu_use_rate >= 90) { classText = 'layui-bg-red'; }
                     else if (data.cpu_use_rate >= 50) { classText = 'layui-bg-orange'; }
+                    else classText = '';
                     $('#cpu_use_rate > span').text(data.cpu_use_rate + '%');
                     $('#cpu_use_rate').removeClass('layui-bg-red layui-bg-orange')
-                                             .addClass(classText)
-                                             .attr('lay-percent', data.cpu_use_rate + '%')
-                                             .attr('style', 'width:' + data.cpu_use_rate + '%;');
+                                      .addClass(classText)
+                                      .attr('lay-percent', data.cpu_use_rate + '%')
+                                      .attr('style', 'width:' + data.cpu_use_rate + '%;');
 
                     // 系统空闲率
                     if (data.free_time_rate <= 10) { classText = 'layui-bg-red'; }
                     else if (data.free_time_rate <= 50) { classText = 'layui-bg-orange'; }
+                    else classText = '';
                     $('#free_time_rate > span').text(data.free_time_rate + '%');
                     $('#free_time_rate').removeClass('layui-bg-red layui-bg-orange')
                                         .addClass(classText)

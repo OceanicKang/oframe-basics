@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-$this -> context -> layout = '@basics/backend/views/layout/model';
+$this -> context -> layout = '@basics/backend/views/layout/layer-modal';
 ?>
 
 <div class="layui-form layui-form-pane">

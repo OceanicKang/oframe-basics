@@ -18,7 +18,7 @@
                                                             'level'   => $model['level'] + 1,
                                                             'p_title' => $model['description'],
                                                             'p_name'  => $model['name']]); ?>"
-                    class="layui-icon layui-icon-add-circle-fine model" title="添加子权限"></a>
+                    class="layui-icon layui-icon-add-circle-fine layer-modal" title="添加子权限"></a>
             <?php endif; ?>
         </td>
 
@@ -47,7 +47,7 @@
                                                             'level'   => $model['level'],
                                                             'p_title' => $p_title,
                                                             'p_name'  => $p_name]); ?>" 
-                    class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                    class="layui-btn layui-btn-primary layui-btn-sm layer-modal" title="编辑">
                     <i class="layui-icon layui-icon-edit"></i>
                 </a>
 

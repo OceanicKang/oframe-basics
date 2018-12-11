@@ -16,7 +16,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
             <div class="layui-btn-container">
 
                 <div class="of-float-r">
-                    <a class="layui-btn layui-btn-normal model" title="添加新菜单" href="<?php echo Url::to(['edit',
+                    <a class="layui-btn layui-btn-normal layer-modal" title="添加新菜单" href="<?php echo Url::to(['edit',
                                                                                                             'id' => 0,
                                                                                                             'p_title' => '无',
                                                                                                             'p_url' => '无',
@@ -25,7 +25,7 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                                                                                                             'level' => 1]); ?>">
                         <i class="layui-icon layui-icon-add-circle-fine" style="margin-right: 5px !important;"></i>添加新菜单
                     </a>
-                    <a class="layui-btn layui-btn-primary model" title="回收站" href="<?php echo Url::to(['recycle', 'type' => $type]); ?>">
+                    <a class="layui-btn layui-btn-primary layer-modal" title="回收站" href="<?php echo Url::to(['recycle', 'type' => $type]); ?>">
                         <i class="ali-icon ali-icon-dustbin" style="margin-right: 5px;"></i>回收站
                     </a>
                 </div>

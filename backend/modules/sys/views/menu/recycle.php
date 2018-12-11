@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 
-$this -> context -> layout = '@basics/backend/views/layout/model';
+$this -> context -> layout = '@basics/backend/views/layout/layer-modal';
 ?>
 
 <table class="layui-table" lay-skin="line">
@@ -31,7 +31,7 @@ $this -> context -> layout = '@basics/backend/views/layout/model';
                 <div class="layui-btn-group">
 
                     <a  href="<?php echo \yii\helpers\Url::to(['restore', 'id' => $menu['id']]); ?>" 
-                        class="layui-btn layui-btn-primary layui-btn-sm model" title="还原">
+                        class="layui-btn layui-btn-primary layui-btn-sm" title="还原">
                         <i class="zmdi zmdi-mail-reply"></i>
                     </a>
 

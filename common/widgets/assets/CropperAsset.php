@@ -10,6 +10,7 @@ class CropperAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
+        '/resources/backend/others/cropper/bootstrap.css',
         '/resources/backend/others/cropper/cropper.min.css',
         '/resources/backend/others/cropper/sitelogo.css'
     ];
