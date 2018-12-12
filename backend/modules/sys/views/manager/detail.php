@@ -22,8 +22,8 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
             <div class="layui-card-body">
 
                 <?php echo $form -> field($model, 'avatar') -> widget(CropperWidget::className(), [
-                                
-                            ]) -> label(false); ?>
+                                'containerDivStyle' => 'width: 15em; margin: auto;'
+                            ]) -> label(false); ?> 
 
                 <hr>
 
@@ -54,5 +54,4 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
 </div>
 
 <?php ActiveForm::end(); ?>
-
 

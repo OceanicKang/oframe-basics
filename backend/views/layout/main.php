@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert2;
 use oframe\basics\backend\widgets\pages\HeaderWidget;
 use oframe\basics\backend\widgets\pages\MenuWidget;
+use oframe\basics\common\widgets\CropperModalWidget;
 use common\enums\StatusEnum;
 
 AppAsset::register($this);
@@ -66,6 +67,8 @@ AppAsset::register($this);
         </div>
     </div>
 </div>
+
+<?php echo CropperModalWidget::widget(); ?>
 
 <?php $this->endBody() ?>
 

@@ -26,6 +26,6 @@ class CropperAsset extends AssetBundle
      * @inheritdoc
      */
     public $jsOptions = [
-        // 'position' => \yii\web\View::POS_HEAD,   // 这是设置所有js放置的位置
+        'position' => \yii\web\View::POS_BEGIN,   // 这是设置所有js放置的位置
     ];
 }

@@ -18,16 +18,7 @@ class CropperWidget extends \yii\widgets\InputWidget
      * 容器 div
      * @var array
      */
-    public $containerDivOptions = [];
-
-    public function init()
-    {
-        $_containerDivOptions = [
-            'class' => 'of-txt-center'
-        ];
-
-        $this -> containerDivOptions = ArrayHelper::merge($_containerDivOptions, $this -> containerDivOptions);
-    }
+    public $containerDivStyle = '';
 
     public function run()
     {
@@ -35,24 +26,24 @@ class CropperWidget extends \yii\widgets\InputWidget
         
         $attribute = str_replace('[]', '', $this -> attribute);
 
-        if (!$id = $this -> id) {
-            $id = $this -> hasModel() ? Html::getInputId($this -> model, $this -> attribute) : $this -> id;
+        if (!$this -> id) {
+            $this -> id = $this -> hasModel() ? Html::getInputId($this -> model, $this -> attribute) : $this -> id;
         }
 
-        if (!$name = $this -> name) {
-            $name = $this -> hasModel() ? Html::getInputName($this -> model, $this -> attribute) : $this -> name;
+        if (!$this -> name) {
+            $this -> name = $this -> hasModel() ? Html::getInputName($this -> model, $this -> attribute) : $this -> name;
         }
 
-        if (!$value = $this -> value) {
-            $value = $this -> hasModel() ? Html::getAttributeValue($this -> model, $this -> attribute) : $this -> value;
+        if (!$this -> value) {
+            $this -> value = $this -> hasModel() ? Html::getAttributeValue($this -> model, $this -> attribute) : $this -> value;
         }
 
         return $this -> render('cropper', [
             'model' => $this -> model,
-            'id' => $id,
-            'name' => $name,
-            'value' => $value,
-            'containerDivOptions' => $this -> containerDivOptions
+            'id' => $this -> id,
+            'name' => $this -> name,
+            'value' => $this -> value,
+            'containerDivStyle' => $this -> containerDivStyle,
         ]);
     }
 
