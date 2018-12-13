@@ -61,11 +61,11 @@ class BaseController extends \yii\web\Controller
      * 打印调试
      * @param $array
      */
-    public function p($array)
+    public function p($array, $detail = false)
     {
         echo "<pre>";
 
-        print_r($array);
+        $detail ? var_dump($array) : print_r($array);
 
         exit();
     }

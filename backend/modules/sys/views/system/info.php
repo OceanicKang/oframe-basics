@@ -120,7 +120,6 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                             <td>文件上传限制</td>
                             <td>
                                 服务器限制：<?php echo ini_get('upload_max_filesize') ?> <br>
-                                系统限制：<?php echo Yii::$app -> config -> get('WEB_MAX_FILE_SIZE'); ?>KB（0表示不限制）<br>
                                 最多同时能上传 <?php echo ini_get('max_file_uploads') ?> 份
                             </td>
                         </tr>
@@ -163,7 +162,10 @@ $this -> params['breadcrumbs'][] = ['label' => $this -> title];
                             <td>
                                 <?php foreach (Yii::$app -> params['extension_loaded'] as $extend): ?>
 
-                                <span class="layui-badge <?php echo extension_loaded($extend) ? 'layui-bg-blue' : 'layui-bg-gray' ?>"><?php echo $extend; ?></span>
+                                <span class="layui-badge <?php echo extension_loaded($extend) ? 'layui-bg-blue' : 'layui-bg-gray' ?>">
+                                    <?php echo $extend; ?>
+                                    <?php echo extension_loaded($extend) ? '已启用' : '未启用' ?>
+                                </span>
 
                                 <?php endforeach; ?>
                             </td>

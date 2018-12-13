@@ -93,7 +93,7 @@ AppAsset::register($this);
     layui.config({
         base: '/resources/backend/' //静态资源所在路径
     }).extend({
-        index: '/lib/index' //主入口模块
+        index: 'lib/index' //主入口模块
     }).use('index');
 </script>
 

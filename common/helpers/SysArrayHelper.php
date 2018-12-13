@@ -2,8 +2,9 @@
 namespace oframe\basics\common\helpers;
 
 use Yii;
+use yii\helpers\BaseArrayHelper;
 
-class SysArrayHelper
+class SysArrayHelper extends BaseArrayHelper
 {
     /**
      * 递归 分组 
@@ -55,46 +56,6 @@ class SysArrayHelper
         }
 
         return $arr;
-    }
-
-    /**
-     * 二位数组排序
-     * @param array $arr 排序数组
-     * @param string $key 排序关键字
-     * @param string $type 排序类型
-     * @return array
-     */
-    public static function sort($arr, $key, $type = 'asc')
-    {
-        if (count($arr) <= 1) {
-
-            return $arr;
-
-        } else {
-
-            $key_value = array();
-
-            $new_array = array();
-
-            foreach ($arr as $k => $v) {
-
-                $key_value[$k] = $v[$key];
-
-            }
-
-            'asc' == $type ? asort($key_value) : arsort($key_value);
-
-            reset($key_value);
-
-            foreach ($key_value as $k => $v) {
-
-                $new_array[$k] = $arr[$k];
-
-            }
-
-            return $new_array;
-
-        }
     }
 
 }

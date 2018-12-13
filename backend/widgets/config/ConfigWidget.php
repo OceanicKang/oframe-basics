@@ -14,8 +14,26 @@ class ConfigWidget extends \yii\base\Widget
 
     public function run()
     {
+        $config = $this -> config;
+
+        if ($config['extra']) {
+
+            $config['extra'] = explode(',', $config['extra']);
+
+            foreach ($config['extra'] as $key => $value) {
+
+                $config['extra'][$key] = explode('=>', $value);
+
+                $config['extra'][$config['extra'][$key][0]] = $config['extra'][$key][1];
+
+                unset($config['extra'][$key]);
+
+            }
+
+        }
+
         return $this -> render('config', [
-            'config' => $this -> config
+            'config' => $config
         ]);
     }
 }

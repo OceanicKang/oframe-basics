@@ -57,7 +57,6 @@ return [
         'WEB_SITE_DOMAIN',
         'WEB_PAGE_SIZE',
         'WEB_SITE_CACHE',
-        'WEB_MAX_FILE_SIZE',
         'WEB_FILE_TYPE',
         'WEB_META_KEY',
         'WEB_META_DESCRIBE',

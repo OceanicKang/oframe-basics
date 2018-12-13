@@ -56,6 +56,12 @@ AppAsset::register($this);
                         'activeItemTemplate'=>"<a><cite>{link}</cite></a>",
                         'links' => isset($this -> params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                     ]) ?>
+
+            <?php if (isset($this -> params['breadcrumbs']) && count($this -> params['breadcrumbs']) > 1): ?>
+                <div class="of-float-r" style="color: #666; font-style: normal; font-size: 12px !important;">
+                    <a href="javascript:history.go(-1)"> <i class="layui-icon layui-icon-return" style="font-size: 12px !important;"></i> 返回 </a>
+                </div>
+            <?php endif; ?>
         </div>
         
         <?= Alert2::widget() ?>
@@ -76,7 +82,7 @@ AppAsset::register($this);
     layui.config({
         base: '/resources/backend/' //静态资源所在路径
     }).extend({
-        index: '/lib/index' //主入口模块
+        index: 'lib/index' //主入口模块
     }).use(['index', 'table', 'form', 'set'], function () {
         var $ = layui.$
         ,admin = layui.admin

@@ -23,7 +23,7 @@
                                                         'p_name'  => $config['name'],
                                                         'p_title' => $config['title'],
                                                         'anchor'  => $anchor]); ?>"
-                class="layui-icon layui-icon-add-circle-fine model" title="添加子配置"></a>
+                class="layui-icon layui-icon-add-circle-fine layer-modal" title="添加子配置"></a>
         <?php endif; ?>
 
     </th>
@@ -64,7 +64,7 @@
                                                         'p_name'  => $p_name,
                                                         'p_title' => $p_title,
                                                         'anchor'  => $anchor]); ?>" 
-                class="layui-btn layui-btn-primary layui-btn-sm model" title="编辑">
+                class="layui-btn layui-btn-primary layui-btn-sm layer-modal" title="编辑">
                 <i class="layui-icon layui-icon-edit"></i>
             </a>
 

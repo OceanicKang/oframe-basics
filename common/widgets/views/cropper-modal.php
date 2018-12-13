@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 ?>
 
-<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1" style="display: none;">
 
     <div class="modal-dialog modal-lg">
 
@@ -125,11 +125,11 @@ use yii\helpers\Url;
     // 简单验证
     $('#avatarInput').on('change', function (e) {
 
-        var max_file_size = <?php echo Yii::$app -> config -> get('WEB_MAX_FILE_SIZE'); ?>; // KB
+        var max_file_size = <?php echo Yii::$app -> config -> get('UPLOAD_IMAGES_MAX_SIZE') * 1024; ?>; // KB
 
         var target = $(e.target);
 
-        var size = target[0].files[0].size; // KB
+        var size = target[0].files[0].size / 1024; // KB
 
         if (max_file_size && size > max_file_size) {
 
@@ -223,5 +223,3 @@ use yii\helpers\Url;
 
     }
 </script>
-
-

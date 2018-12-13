@@ -20,4 +20,3 @@ use yii\helpers\Html;
     <a class="layui-btn layui-btn-xs" style="margin: 10px 0;" data-toggle="modal" data-target="#avatar-modal"> 图片修改 </a>
 
 </div>
-

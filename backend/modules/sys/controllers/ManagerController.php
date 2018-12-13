@@ -93,6 +93,10 @@ class ManagerController extends \backend\controllers\BController
                 $this -> message($this -> analysisError($model -> getFirstErrors()), $this -> redirect(['index']), 'error');
     }
 
+    /**
+     * 用户详情
+     * @Author OceanicKang 2018-12-13
+     */
     public function actionDetail($id)
     {
         $model = $this -> findModel($id);

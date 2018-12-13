@@ -49,6 +49,20 @@ use yii\helpers\Html;
 
 <?php elseif ($config['type'] == 'radioList'): ?>
 
+<div class="layui-form-item">
+    <label class="layui-form-label" for="<?php echo $config['id']; ?>" title="<?php echo $config['name']; ?>"><?php echo $config['title'] ?></label>
+    <div class="layui-input-block">
+
+        <?php foreach ($config['extra'] as $value => $title): ?>
+        <input type="radio"
+               name="Setting[<?php echo $config['name'] ?>]"
+               value="<?php echo $value ?>"
+               title=" <?php echo $title ?>"
+               <?php echo ($config['value'] == $value) ? 'checked' : ''; ?> >
+        <?php endforeach; ?>
+
+    </div>
+</div>
 
 <?php elseif ($config['type'] == 'statusRadio'): ?>
 

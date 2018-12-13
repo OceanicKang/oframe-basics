@@ -72,7 +72,7 @@ class DataController extends \backend\controllers\BController
                 $fileSize = filesize($path . $value);
 
                 // 获取文件类型
-                $fileType = SystemHelper::getFileType($value);
+                $fileType = SystemHelper::getFileTypeToCN($value);
 
                 // 构建数组
                 $list[] = [
@@ -91,7 +91,7 @@ class DataController extends \backend\controllers\BController
 
         }
 
-        $list = SysArrayHelper::sort($list, 'time', 'desc');
+        SysArrayHelper::multisort($list, 'time', SORT_DESC);
 
         return $this -> render('backup-files', [
             'files' => $list
