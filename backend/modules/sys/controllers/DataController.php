@@ -5,7 +5,7 @@ use Yii;
 use oframe\basics\common\helpers\MySQLHelper;
 use oframe\basics\common\helpers\SysArrayHelper;
 use oframe\basics\common\helpers\AjaxHelper;
-use oframe\basics\common\helpers\SystemHelper;
+use oframe\basics\common\helpers\FileHelper;
 
 class DataController extends \backend\controllers\BController
 {
@@ -72,7 +72,7 @@ class DataController extends \backend\controllers\BController
                 $fileSize = filesize($path . $value);
 
                 // 获取文件类型
-                $fileType = SystemHelper::getFileTypeToCN($value);
+                $fileType = FileHelper::getFileTypeToCN($value);
 
                 // 构建数组
                 $list[] = [

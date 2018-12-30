@@ -49,6 +49,7 @@ return [
     /** ------ 默认禁止删除的配置标识 ------ **/
     'defaultNotDelConfigName' => [
 
+        // 系统设置
         'SYS',
         'WEB_SITE',
         'WEB_SITE_TITLE',
@@ -56,13 +57,11 @@ return [
         'WEB_SITE_AD_NAME',
         'WEB_SITE_DOMAIN',
         'WEB_PAGE_SIZE',
-        'WEB_SITE_CACHE',
         'WEB_FILE_TYPE',
         'WEB_META_KEY',
         'WEB_META_DESCRIBE',
         'WEB_COPY_RIGHT',
         'WEB_DEFAULT_AVATAR',
-
         'SYS_EMAIL',
         'SYS_EMAIL_HOST',
         'SYS_EMAIL_PORT',
@@ -70,6 +69,26 @@ return [
         'SYS_EMAIL_NICKNAME',
         'SYS_EMAIL_PASSWORD',
         'SYS_EMAIL_ENCRYPTION',
+
+        // 上传设置
+        'UPLOAD',
+        'UPLOAD_IMAGES',
+        'UPLOAD_IMAGES_ORIGIN_NAME',
+        'UPLOAD_IMAGES_FULL_PATH',
+        'UPLOAD_IMAGES_ACTION',
+        'UPLOAD_IMAGES_MAX_SIZE',
+        'UPLOAD_IMAGES_EXTENSIONS',
+        'UPLOAD_IMAGES_MAIN_PATH',
+        'UPLOAD_IMAGES_THUMB_PATH',
+        'UPLOAD_IMAGES_SUB_PATH',
+        'UPLOAD_IMAGES_PREFIX',
+        'UPLOAD_IMAGES_THUMB_SIZE',
+        'UPLOAD_IMAGES_WATERMARK',
+        'UPLOAD_IMAGES_WATERMARK_LOCAL',
+        'UPLOAD_IMAGES_WATERMARK_IMG',
+        'UPLOAD_IMAGES_COMPRESS',
+        'UPLOAD_IMAGES_COMPRESS_RULES',
+
 
     ],
 

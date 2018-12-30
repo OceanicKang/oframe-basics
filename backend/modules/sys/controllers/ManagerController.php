@@ -13,7 +13,7 @@ class ManagerController extends \backend\controllers\BController
     /**
      * 管理员列表
      *
-     * @return string [<description>]
+     * @return string
      */
     public function actionIndex()
     {
@@ -50,6 +50,8 @@ class ManagerController extends \backend\controllers\BController
 
     /**
      * 简单 修改|添加 后台用户
+     *
+     * @return string
      */
     public function actionEdit($id)
     {
@@ -83,6 +85,8 @@ class ManagerController extends \backend\controllers\BController
 
     /**
      * 删除用户
+     *
+     * @return string
      */
     public function actionDelete($id)
     {
@@ -96,6 +100,8 @@ class ManagerController extends \backend\controllers\BController
     /**
      * 用户详情
      * @Author OceanicKang 2018-12-13
+     * @param int $id 用户ID
+     * @return string
      */
     public function actionDetail($id)
     {

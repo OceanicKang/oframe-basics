@@ -24,13 +24,16 @@ class ConfigWidget extends \yii\base\Widget
 
                 $config['extra'][$key] = explode('=>', $value);
 
-                $config['extra'][$config['extra'][$key][0]] = $config['extra'][$key][1];
-
-                unset($config['extra'][$key]);
+                $extra[$config['extra'][$key][0]] = $config['extra'][$key][1];
 
             }
 
+            $config['extra'] = $extra;
+
+            unset($extra, $extra);
         }
+
+
 
         return $this -> render('config', [
             'config' => $config

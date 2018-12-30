@@ -13,7 +13,7 @@ use yii\helpers\Html;
 
         <img src="<?php echo $value ?>" />
 
-        <?php echo Html::input('hidden', $name, $value, [ 'id' => $id]); ?>
+        <?php echo Html::input('hidden', $name, $value, ['id' => $id]); ?>
 
     </div>
 
